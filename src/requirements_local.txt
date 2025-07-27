@@ -1,0 +1,14 @@
+pip uninstall -y protobuf
+conda uninstall -y protobuf
+find /opt/conda/lib/python3.12/site-packages/ -name "*protobuf*" -delete
+find ~/.local -name "*protobuf*" -delete
+pip install protobuf==3.20.3
+
+pip install --force-reinstall protobuf==3.20.3
+pip install accelerate>=1.2.1
+pip uninstall triton xformers -y
+pip install triton==2.2.0
+
+pip install sentencepiece>=0.2.0
+pip install unsloth
+

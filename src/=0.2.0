@@ -1,0 +1,5 @@
+Collecting sentencepiece
+  Using cached sentencepiece-0.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Using cached sentencepiece-0.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+Installing collected packages: sentencepiece
+Successfully installed sentencepiece-0.2.0

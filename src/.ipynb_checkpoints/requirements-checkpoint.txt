@@ -1,0 +1,6 @@
+unsloth
+trl
+bitsandbytes
+accelerate
+ninja
+triton==2.1.0
