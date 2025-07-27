@@ -1,0 +1,15 @@
+artifact_uri: file:///home/sagemaker-user/Proj_NPA/nlp_genAI_projectV2/scripts/fine_tuning/mlruns/0/d4c41d6625034a49b88436b6edd62bd3/artifacts
+end_time: 1752357156158
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d4c41d6625034a49b88436b6edd62bd3
+run_name: /home/sagemaker-user/Proj_NPA/nlp_genAI_projectV2/models/action_model
+run_uuid: d4c41d6625034a49b88436b6edd62bd3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752357113053
+status: 3
+tags: []
+user_id: sagemaker-user

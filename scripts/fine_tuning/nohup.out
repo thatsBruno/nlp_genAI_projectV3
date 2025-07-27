@@ -1,0 +1,1830 @@
+sagemaker.config INFO - Not applying SDK defaults from location: /etc/xdg/sagemaker/config.yaml
+sagemaker.config INFO - Not applying SDK defaults from location: /home/sagemaker-user/.config/sagemaker/config.yaml
+INFO:sagemaker.image_uris:image_uri is not presented, retrieving image_uri based on instance_type, framework etc.
+INFO:sagemaker:Creating training-job with name: ag-news-pytorch-20250721-2052
+🚀 Starting training job setup...
+📦 Using S3 bucket: sagemaker-eu-west-1-267567228900
+🔐 Using IAM role: arn:aws:iam::267567228900:role/iseg-prd-sagemaker-role
+🤗 Logging into HuggingFace...
+✅ HuggingFace login successful
+📤 Uploading data to S3...
+Uploading train.jsonl to s3://sagemaker-eu-west-1-267567228900/new/data/train.jsonl
+Uploading test.jsonl to s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl
+✅ Train data uploaded: s3://sagemaker-eu-west-1-267567228900/new/data/train.jsonl
+✅ Test data uploaded: s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl
+🏗️  Creating PyTorch estimator...
+🎯 Starting training job: ag-news-pytorch-20250721-2052
+💾 Input channels: {'train': 's3://sagemaker-eu-west-1-267567228900/new/data/train.jsonl', 'test': 's3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl'}
+2025-07-21 21:03:11 Starting - Starting the training job
+2025-07-21 21:03:11 Pending - Training job waiting for capacity...
+2025-07-21 21:03:30 Pending - Preparing the instances for training...
+2025-07-21 21:04:12 Downloading - Downloading the training image..................
+2025-07-21 21:07:14 Training - Training image download completed. Training in progress......bash: cannot set terminal process group (-1): Inappropriate ioctl for device
+bash: no job control in this shell
+CUDA compat package should be installed for NVIDIA driver smaller than 560.35.05
+Current installed NVIDIA driver version is 550.163.01
+Adding CUDA compat to LD_LIBRARY_PATH
+/usr/local/cuda/compat:/opt/amazon/openmpi/lib:/opt/amazon/efa/lib:/lib/x86_64-linux-gnu:/usr/local/lib:/usr/local/lib:/usr/local/nvidia/lib:/usr/local/nvidia/lib64
+2025-07-21 21:07:50,406 sagemaker-training-toolkit INFO     Imported framework sagemaker_pytorch_container.training
+2025-07-21 21:07:50,423 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-07-21 21:07:50,432 sagemaker_pytorch_container.training INFO     Block until all host DNS lookups succeed.
+2025-07-21 21:07:50,433 sagemaker_pytorch_container.training INFO     Invoking user training script.
+2025-07-21 21:09:14,175 sagemaker-training-toolkit INFO     Installing dependencies from requirements.txt
+Collecting unsloth>=2025.7.5 (from unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading unsloth-2025.7.6-py3-none-any.whl.metadata (47 kB)
+Collecting evaluate>=0.4.0 (from -r requirements.txt (line 2))
+Downloading evaluate-0.4.5-py3-none-any.whl.metadata (9.5 kB)
+Collecting unsloth_zoo>=2025.7.8 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading unsloth_zoo-2025.7.8-py3-none-any.whl.metadata (8.1 kB)
+Requirement already satisfied: torch>=2.4.0 in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2.6.0+cu126)
+Collecting xformers>=0.0.27.post2 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading xformers-0.0.31.post1-cp39-abi3-manylinux_2_28_x86_64.whl.metadata (1.1 kB)
+Collecting bitsandbytes (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading bitsandbytes-0.46.1-py3-none-manylinux_2_24_x86_64.whl.metadata (10 kB)
+Requirement already satisfied: triton>=3.0.0 in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.2.0)
+Requirement already satisfied: packaging in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (24.2)
+Collecting tyro (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading tyro-0.9.26-py3-none-any.whl.metadata (12 kB)
+Collecting transformers!=4.47.0,!=4.52.0,!=4.52.1,!=4.52.2,!=4.52.3,!=4.53.0,>=4.51.3 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading transformers-4.53.2-py3-none-any.whl.metadata (40 kB)
+Collecting datasets<4.0.0,>=3.4.1 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading datasets-3.6.0-py3-none-any.whl.metadata (19 kB)
+Collecting sentencepiece>=0.2.0 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading sentencepiece-0.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.7 kB)
+Requirement already satisfied: tqdm in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (4.67.1)
+Requirement already satisfied: psutil in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (7.0.0)
+Collecting wheel>=0.42.0 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading wheel-0.45.1-py3-none-any.whl.metadata (2.3 kB)
+Requirement already satisfied: numpy in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (1.26.4)
+Requirement already satisfied: accelerate>=0.34.1 in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (1.9.0)
+Collecting trl!=0.15.0,!=0.19.0,!=0.9.0,!=0.9.1,!=0.9.2,!=0.9.3,>=0.7.9 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading trl-0.19.1-py3-none-any.whl.metadata (10 kB)
+Collecting peft!=0.11.0,>=0.7.1 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading peft-0.16.0-py3-none-any.whl.metadata (14 kB)
+Requirement already satisfied: protobuf in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (6.31.1)
+Requirement already satisfied: huggingface_hub in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (0.33.4)
+Collecting hf_transfer (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading hf_transfer-0.1.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.7 kB)
+Collecting diffusers (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading diffusers-0.34.0-py3-none-any.whl.metadata (20 kB)
+Requirement already satisfied: torchvision in /usr/local/lib/python3.12/site-packages (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (0.21.0+cu126)
+Requirement already satisfied: filelock in /usr/local/lib/python3.12/site-packages (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.18.0)
+Requirement already satisfied: pyarrow>=15.0.0 in /usr/local/lib/python3.12/site-packages (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (20.0.0)
+Collecting dill<0.3.9,>=0.3.0 (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading dill-0.3.8-py3-none-any.whl.metadata (10 kB)
+Requirement already satisfied: pandas in /usr/local/lib/python3.12/site-packages (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2.3.1)
+Requirement already satisfied: requests>=2.32.2 in /usr/local/lib/python3.12/site-packages (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2.32.4)
+Collecting xxhash (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading xxhash-3.5.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting multiprocess<0.70.17 (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading multiprocess-0.70.16-py312-none-any.whl.metadata (7.2 kB)
+Collecting fsspec<=2025.3.0,>=2023.1.0 (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading fsspec-2025.3.0-py3-none-any.whl.metadata (11 kB)
+Requirement already satisfied: pyyaml>=5.1 in /usr/local/lib/python3.12/site-packages (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (6.0.2)
+Collecting aiohttp!=4.0.0a0,!=4.0.0a1 (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading aiohttp-3.12.14-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.6 kB)
+Requirement already satisfied: safetensors>=0.4.3 in /usr/local/lib/python3.12/site-packages (from accelerate>=0.34.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (0.5.3)
+Collecting aiohappyeyeballs>=2.5.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading aiohappyeyeballs-2.6.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiosignal>=1.4.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+Requirement already satisfied: attrs>=17.3.0 in /usr/local/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (25.3.0)
+Collecting frozenlist>=1.1.1 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading frozenlist-1.7.0-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (18 kB)
+Collecting multidict<7.0,>=4.5 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading multidict-6.6.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting propcache>=0.2.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading propcache-0.3.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (12 kB)
+Collecting yarl<2.0,>=1.17.0 (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading yarl-1.20.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (73 kB)
+Requirement already satisfied: idna>=2.0 in /usr/local/lib/python3.12/site-packages (from yarl<2.0,>=1.17.0->aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.10)
+Requirement already satisfied: typing-extensions>=4.2 in /usr/local/lib/python3.12/site-packages (from aiosignal>=1.4.0->aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (4.14.1)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.2 in /usr/local/lib/python3.12/site-packages (from huggingface_hub->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (1.1.5)
+Requirement already satisfied: charset_normalizer<4,>=2 in /usr/local/lib/python3.12/site-packages (from requests>=2.32.2->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.4.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in /usr/local/lib/python3.12/site-packages (from requests>=2.32.2->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2.5.0)
+Requirement already satisfied: certifi>=2017.4.17 in /usr/local/lib/python3.12/site-packages (from requests>=2.32.2->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2025.7.14)
+Requirement already satisfied: networkx in /usr/local/lib/python3.12/site-packages (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.5)
+Requirement already satisfied: jinja2 in /usr/local/lib/python3.12/site-packages (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.1.6)
+Requirement already satisfied: setuptools in /usr/local/lib/python3.12/site-packages (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (80.9.0)
+Requirement already satisfied: sympy==1.13.1 in /usr/local/lib/python3.12/site-packages (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (1.13.1)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /usr/local/lib/python3.12/site-packages (from sympy==1.13.1->torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (1.3.0)
+Collecting regex!=2019.12.17 (from transformers!=4.47.0,!=4.52.0,!=4.52.1,!=4.52.2,!=4.52.3,!=4.53.0,>=4.51.3->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading regex-2024.11.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (40 kB)
+Collecting tokenizers<0.22,>=0.21 (from transformers!=4.47.0,!=4.52.0,!=4.52.1,!=4.52.2,!=4.52.3,!=4.53.0,>=4.51.3->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading tokenizers-0.21.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting cut_cross_entropy (from unsloth_zoo>=2025.7.8->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading cut_cross_entropy-25.1.1-py3-none-any.whl.metadata (9.3 kB)
+Requirement already satisfied: pillow in /usr/local/lib/python3.12/site-packages (from unsloth_zoo>=2025.7.8->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (11.3.0)
+Collecting msgspec (from unsloth_zoo>=2025.7.8->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading msgspec-0.19.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.9 kB)
+Collecting torch>=2.4.0 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading torch-2.7.1-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Collecting sympy>=1.13.3 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.6.77 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cuda_nvrtc_cu12-12.6.77-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu12==12.6.77 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cuda_runtime_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.6.80 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cuda_cupti_cu12-12.6.80-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==9.5.1.17 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cudnn_cu12-9.5.1.17-py3-none-manylinux_2_28_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.6.4.1 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cublas_cu12-12.6.4.1-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.3.0.4 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cufft_cu12-11.3.0.4-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu12==10.3.7.77 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_curand_cu12-10.3.7.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.7.1.2 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cusolver_cu12-11.7.1.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.5.4.2 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cusparse_cu12-12.5.4.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparselt-cu12==0.6.3 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cusparselt_cu12-0.6.3-py3-none-manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting nvidia-nccl-cu12==2.26.2 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_nccl_cu12-2.26.2-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+Collecting nvidia-nvtx-cu12==12.6.77 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_nvtx_cu12-12.6.77-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-nvjitlink-cu12==12.6.85 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_nvjitlink_cu12-12.6.85-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufile-cu12==1.11.1.6 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading nvidia_cufile_cu12-1.11.1.6-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.5 kB)
+Collecting triton>=3.0.0 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading triton-3.3.1-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.5 kB)
+Requirement already satisfied: importlib_metadata in /usr/local/lib/python3.12/site-packages (from diffusers->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (6.11.0)
+Requirement already satisfied: zipp>=0.5 in /usr/local/lib/python3.12/site-packages (from importlib_metadata->diffusers->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.23.0)
+Requirement already satisfied: MarkupSafe>=2.0 in /usr/local/lib/python3.12/site-packages (from jinja2->torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.0.2)
+Requirement already satisfied: python-dateutil>=2.8.2 in /usr/local/lib/python3.12/site-packages (from pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /usr/local/lib/python3.12/site-packages (from pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2025.2)
+Requirement already satisfied: tzdata>=2022.7 in /usr/local/lib/python3.12/site-packages (from pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2025.2)
+Requirement already satisfied: six>=1.5 in /usr/local/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (1.17.0)
+INFO: pip is looking at multiple versions of torchvision to determine which version is compatible with other requirements. This could take a while.
+Collecting torchvision (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading torchvision-0.22.1-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Collecting docstring-parser>=0.15 (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading docstring_parser-0.17.0-py3-none-any.whl.metadata (3.5 kB)
+Requirement already satisfied: rich>=11.1.0 in /usr/local/lib/python3.12/site-packages (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (14.0.0)
+Collecting shtab>=1.5.6 (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading shtab-1.7.2-py3-none-any.whl.metadata (7.4 kB)
+Collecting typeguard>=4.0.0 (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading typeguard-4.4.4-py3-none-any.whl.metadata (3.3 kB)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /usr/local/lib/python3.12/site-packages (from rich>=11.1.0->tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (3.0.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /usr/local/lib/python3.12/site-packages (from rich>=11.1.0->tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (2.19.2)
+Requirement already satisfied: mdurl~=0.1 in /usr/local/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=11.1.0->tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1)) (0.1.2)
+Collecting xformers>=0.0.27.post2 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading xformers-0.0.29.post3-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (1.2 kB)
+INFO: pip is looking at multiple versions of xformers to determine which version is compatible with other requirements. This could take a while.
+Collecting typeguard>=4.0.0 (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading typeguard-4.4.3-py3-none-any.whl.metadata (3.4 kB)
+Collecting shtab>=1.5.6 (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading shtab-1.7.1-py3-none-any.whl.metadata (7.3 kB)
+Collecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=11.1.0->tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading mdurl-0.1.2-py3-none-any.whl.metadata (1.6 kB)
+Collecting markdown-it-py>=2.2.0 (from rich>=11.1.0->tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading markdown_it_py-3.0.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting pygments<3.0.0,>=2.13.0 (from rich>=11.1.0->tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading pygments-2.19.2-py3-none-any.whl.metadata (2.5 kB)
+Collecting rich>=11.1.0 (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading rich-14.0.0-py3-none-any.whl.metadata (18 kB)
+Collecting docstring-parser>=0.15 (from tyro->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading docstring_parser-0.16-py3-none-any.whl.metadata (3.0 kB)
+INFO: pip is still looking at multiple versions of xformers to determine which version is compatible with other requirements. This could take a while.
+Collecting tyro (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading tyro-0.9.25-py3-none-any.whl.metadata (12 kB)
+Collecting torchvision (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading torchvision-0.22.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Downloading torchvision-0.21.0-cp312-cp312-manylinux1_x86_64.whl.metadata (6.1 kB)
+Downloading torchvision-0.20.1-cp312-cp312-manylinux1_x86_64.whl.metadata (6.1 kB)
+Downloading torchvision-0.20.0-cp312-cp312-manylinux1_x86_64.whl.metadata (6.1 kB)
+Downloading torchvision-0.19.1-cp312-cp312-manylinux1_x86_64.whl.metadata (6.0 kB)
+Downloading torchvision-0.19.0-cp312-cp312-manylinux1_x86_64.whl.metadata (6.0 kB)
+INFO: pip is still looking at multiple versions of torchvision to determine which version is compatible with other requirements. This could take a while.
+Downloading torchvision-0.18.1-cp312-cp312-manylinux1_x86_64.whl.metadata (6.6 kB)
+Downloading torchvision-0.18.0-cp312-cp312-manylinux1_x86_64.whl.metadata (6.6 kB)
+Downloading torchvision-0.17.2-cp312-cp312-manylinux1_x86_64.whl.metadata (6.6 kB)
+Downloading torchvision-0.17.1-cp312-cp312-manylinux1_x86_64.whl.metadata (6.6 kB)
+Downloading torchvision-0.17.0-cp312-cp312-manylinux1_x86_64.whl.metadata (6.6 kB)
+INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+Collecting psutil (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading psutil-7.0.0-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (22 kB)
+INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+Downloading psutil-6.1.1-cp36-abi3-manylinux_2_12_x86_64.manylinux2010_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (22 kB)
+Collecting protobuf (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading protobuf-6.31.1-cp39-abi3-manylinux2014_x86_64.whl.metadata (593 bytes)
+Downloading protobuf-6.31.0-cp39-abi3-manylinux2014_x86_64.whl.metadata (593 bytes)
+Collecting pillow (from unsloth_zoo>=2025.7.8->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading pillow-11.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+Downloading pillow-11.2.1-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (8.9 kB)
+Collecting tzdata>=2022.7 (from pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Downloading tzdata-2025.1-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Downloading six-1.16.0-py2.py3-none-any.whl.metadata (1.8 kB)
+Collecting pytz>=2020.1 (from pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Downloading pytz-2025.1-py2.py3-none-any.whl.metadata (22 kB)
+Collecting python-dateutil>=2.8.2 (from pandas->datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Downloading python_dateutil-2.9.0-py2.py3-none-any.whl.metadata (8.3 kB)
+Collecting pandas (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading pandas-2.3.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (91 kB)
+Downloading pandas-2.3.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (91 kB)
+Collecting networkx (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading networkx-3.5-py3-none-any.whl.metadata (6.3 kB)
+Downloading networkx-3.4.2-py3-none-any.whl.metadata (6.3 kB)
+Collecting msgspec (from unsloth_zoo>=2025.7.8->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading msgspec-0.18.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.9 kB)
+Downloading msgspec-0.18.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.9 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading MarkupSafe-3.0.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+Downloading MarkupSafe-3.0.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+Collecting jinja2 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Downloading jinja2-3.1.5-py3-none-any.whl.metadata (2.6 kB)
+Collecting zipp>=0.5 (from importlib_metadata->diffusers->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading zipp-3.23.0-py3-none-any.whl.metadata (3.6 kB)
+Downloading zipp-3.22.0-py3-none-any.whl.metadata (3.6 kB)
+Collecting importlib_metadata (from diffusers->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading importlib_metadata-8.7.0-py3-none-any.whl.metadata (4.8 kB)
+Downloading importlib_metadata-8.6.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting hf_transfer (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading hf_transfer-0.1.8-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.7 kB)
+Downloading hf_transfer-0.1.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting filelock (from datasets<4.0.0,>=3.4.1->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading filelock-3.18.0-py3-none-any.whl.metadata (2.9 kB)
+Downloading filelock-3.17.0-py3-none-any.whl.metadata (2.9 kB)
+Collecting diffusers (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading diffusers-0.33.1-py3-none-any.whl.metadata (19 kB)
+Downloading diffusers-0.33.0-py3-none-any.whl.metadata (20 kB)
+Collecting cut_cross_entropy (from unsloth_zoo>=2025.7.8->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading cut_cross_entropy-24.12.3-py3-none-any.whl.metadata (9.3 kB)
+Downloading cut_cross_entropy-24.12.2-py3-none-any.whl.metadata (9.3 kB)
+Downloading cut_cross_entropy-24.12.1-py3-none-any.whl.metadata (9.3 kB)
+Downloading cut_cross_entropy-24.11.4-py3-none-any.whl.metadata (9.3 kB)
+Downloading cut_cross_entropy-24.11.3-py3-none-any.whl.metadata (9.4 kB)
+Collecting sympy>=1.13.3 (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading sympy-1.13.3-py3-none-any.whl.metadata (12 kB)
+Collecting setuptools (from torch>=2.4.0->unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading setuptools-80.9.0-py3-none-any.whl.metadata (6.6 kB)
+Downloading setuptools-80.8.0-py3-none-any.whl.metadata (6.6 kB)
+Collecting xformers>=0.0.27.post2 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading xformers-0.0.31-cp39-abi3-manylinux_2_28_x86_64.whl.metadata (1.0 kB)
+Downloading xformers-0.0.30-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (1.2 kB)
+Collecting torch>=2.4.0 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading torch-2.7.0-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Collecting triton>=3.0.0 (from unsloth>=2025.7.5->unsloth[cu126-torch260]>=2025.7.5->-r requirements.txt (line 1))
+Downloading triton-3.3.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.5 kB)
+Downloading unsloth-2025.7.6-py3-none-any.whl (299 kB)
+Downloading datasets-3.6.0-py3-none-any.whl (491 kB)
+Downloading dill-0.3.8-py3-none-any.whl (116 kB)
+Downloading fsspec-2025.3.0-py3-none-any.whl (193 kB)
+Downloading multiprocess-0.70.16-py312-none-any.whl (146 kB)
+Downloading evaluate-0.4.5-py3-none-any.whl (84 kB)
+Downloading aiohttp-3.12.14-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.7 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.7/1.7 MB 19.5 MB/s eta 0:00:00
+Downloading multidict-6.6.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (256 kB)
+Downloading yarl-1.20.1-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (355 kB)
+Downloading aiohappyeyeballs-2.6.1-py3-none-any.whl (15 kB)
+Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Downloading frozenlist-1.7.0-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (241 kB)
+Downloading peft-0.16.0-py3-none-any.whl (472 kB)
+Downloading propcache-0.3.2-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (224 kB)
+Downloading sentencepiece-0.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (1.3 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 20.0 MB/s eta 0:00:00
+Downloading transformers-4.53.2-py3-none-any.whl (10.8 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.8/10.8 MB 47.2 MB/s eta 0:00:00
+Downloading tokenizers-0.21.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.1 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.1/3.1 MB 23.6 MB/s eta 0:00:00
+Downloading regex-2024.11.6-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (796 kB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 796.9/796.9 kB 9.7 MB/s eta 0:00:00
+Downloading trl-0.19.1-py3-none-any.whl (376 kB)
+Downloading unsloth_zoo-2025.7.8-py3-none-any.whl (166 kB)
+Downloading bitsandbytes-0.46.1-py3-none-manylinux_2_24_x86_64.whl (72.9 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 72.9/72.9 MB 44.7 MB/s eta 0:00:00
+Downloading wheel-0.45.1-py3-none-any.whl (72 kB)
+Downloading xformers-0.0.29.post3-cp312-cp312-manylinux_2_28_x86_64.whl (43.4 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 43.4/43.4 MB 37.3 MB/s eta 0:00:00
+Downloading cut_cross_entropy-25.1.1-py3-none-any.whl (22 kB)
+Downloading diffusers-0.34.0-py3-none-any.whl (3.8 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.8/3.8 MB 33.0 MB/s eta 0:00:00
+Downloading hf_transfer-0.1.9-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.6 MB)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.6/3.6 MB 18.3 MB/s eta 0:00:00
+Downloading msgspec-0.19.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (213 kB)
+Downloading tyro-0.9.26-py3-none-any.whl (128 kB)
+Downloading docstring_parser-0.17.0-py3-none-any.whl (36 kB)
+Downloading shtab-1.7.2-py3-none-any.whl (14 kB)
+Downloading typeguard-4.4.4-py3-none-any.whl (34 kB)
+Downloading xxhash-3.5.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (194 kB)
+Installing collected packages: sentencepiece, xxhash, wheel, typeguard, shtab, regex, propcache, multidict, msgspec, hf_transfer, fsspec, frozenlist, docstring-parser, dill, aiohappyeyeballs, yarl, multiprocess, aiosignal, xformers, tyro, tokenizers, diffusers, cut_cross_entropy, bitsandbytes, aiohttp, transformers, peft, datasets, trl, evaluate, unsloth_zoo, unsloth
+Attempting uninstall: fsspec
+Found existing installation: fsspec 2025.7.0
+Uninstalling fsspec-2025.7.0:
+Successfully uninstalled fsspec-2025.7.0
+Attempting uninstall: dill
+Found existing installation: dill 0.4.0
+Uninstalling dill-0.4.0:
+Successfully uninstalled dill-0.4.0
+Attempting uninstall: multiprocess
+Found existing installation: multiprocess 0.70.18
+Uninstalling multiprocess-0.70.18:
+Successfully uninstalled multiprocess-0.70.18
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+pathos 0.3.4 requires dill>=0.4.0, but you have dill 0.3.8 which is incompatible.
+pathos 0.3.4 requires multiprocess>=0.70.18, but you have multiprocess 0.70.16 which is incompatible.
+Successfully installed aiohappyeyeballs-2.6.1 aiohttp-3.12.14 aiosignal-1.4.0 bitsandbytes-0.46.1 cut_cross_entropy-25.1.1 datasets-3.6.0 diffusers-0.34.0 dill-0.3.8 docstring-parser-0.17.0 evaluate-0.4.5 frozenlist-1.7.0 fsspec-2025.3.0 hf_transfer-0.1.9 msgspec-0.19.0 multidict-6.6.3 multiprocess-0.70.16 peft-0.16.0 propcache-0.3.2 regex-2024.11.6 sentencepiece-0.2.0 shtab-1.7.2 tokenizers-0.21.2 transformers-4.53.2 trl-0.19.1 typeguard-4.4.4 tyro-0.9.26 unsloth-2025.7.6 unsloth_zoo-2025.7.8 wheel-0.45.1 xformers-0.0.29.post3 xxhash-3.5.0 yarl-1.20.1
+WARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+2025-07-21 21:09:53,446 sagemaker-training-toolkit INFO     Waiting for the process to finish and give a return code.
+2025-07-21 21:09:53,446 sagemaker-training-toolkit INFO     Done waiting for a return code. Received 0 from exiting process.
+2025-07-21 21:09:53,486 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-07-21 21:09:53,513 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-07-21 21:09:53,541 sagemaker-training-toolkit INFO     No Neurons detected (normal if no neurons installed)
+2025-07-21 21:09:53,552 sagemaker-training-toolkit INFO     Invoking user script
+Training Env:
+{
+    "additional_framework_parameters": {},
+    "channel_input_dirs": {
+        "test": "/opt/ml/input/data/test",
+        "train": "/opt/ml/input/data/train"
+    },
+    "current_host": "algo-1",
+    "current_instance_group": "homogeneousCluster",
+    "current_instance_group_hosts": [
+        "algo-1"
+    ],
+    "current_instance_type": "ml.g5.2xlarge",
+    "distribution_hosts": [],
+    "distribution_instance_groups": [],
+    "framework_module": "sagemaker_pytorch_container.training:main",
+    "hosts": [
+        "algo-1"
+    ],
+    "hyperparameters": {
+        "batch_size": 16,
+        "epochs": 3,
+        "learning_rate": 0.0001,
+        "max_seq_length": 4096,
+        "test_path": "s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl"
+    },
+    "input_config_dir": "/opt/ml/input/config",
+    "input_data_config": {
+        "test": {
+            "TrainingInputMode": "File",
+            "S3DistributionType": "FullyReplicated",
+            "RecordWrapperType": "None"
+        },
+        "train": {
+            "TrainingInputMode": "File",
+            "S3DistributionType": "FullyReplicated",
+            "RecordWrapperType": "None"
+        }
+    },
+    "input_dir": "/opt/ml/input",
+    "instance_groups": [
+        "homogeneousCluster"
+    ],
+    "instance_groups_dict": {
+        "homogeneousCluster": {
+            "instance_group_name": "homogeneousCluster",
+            "instance_type": "ml.g5.2xlarge",
+            "hosts": [
+                "algo-1"
+            ]
+        }
+    },
+    "is_hetero": false,
+    "is_master": true,
+    "is_modelparallel_enabled": null,
+    "is_smddpmprun_installed": false,
+    "is_smddprun_installed": false,
+    "job_name": "ag-news-pytorch-20250721-2052",
+    "log_level": 20,
+    "master_hostname": "algo-1",
+    "model_dir": "/opt/ml/model",
+    "module_dir": "s3://sagemaker-eu-west-1-267567228900/ag-news-pytorch-20250721-2052/source/sourcedir.tar.gz",
+    "module_name": "train",
+    "network_interface_name": "eth0",
+    "num_cpus": 8,
+    "num_gpus": 1,
+    "num_neurons": 0,
+    "output_data_dir": "/opt/ml/output/data",
+    "output_dir": "/opt/ml/output",
+    "output_intermediate_dir": "/opt/ml/output/intermediate",
+    "resource_config": {
+        "current_host": "algo-1",
+        "current_instance_type": "ml.g5.2xlarge",
+        "current_group_name": "homogeneousCluster",
+        "hosts": [
+            "algo-1"
+        ],
+        "instance_groups": [
+            {
+                "instance_group_name": "homogeneousCluster",
+                "instance_type": "ml.g5.2xlarge",
+                "hosts": [
+                    "algo-1"
+                ]
+            }
+        ],
+        "network_interface_name": "eth0",
+        "topology": null
+    },
+    "user_entry_point": "train.py"
+}
+Environment variables:
+SM_HOSTS=["algo-1"]
+SM_NETWORK_INTERFACE_NAME=eth0
+SM_HPS={"batch_size":16,"epochs":3,"learning_rate":0.0001,"max_seq_length":4096,"test_path":"s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl"}
+SM_USER_ENTRY_POINT=train.py
+SM_FRAMEWORK_PARAMS={}
+SM_RESOURCE_CONFIG={"current_group_name":"homogeneousCluster","current_host":"algo-1","current_instance_type":"ml.g5.2xlarge","hosts":["algo-1"],"instance_groups":[{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}],"network_interface_name":"eth0","topology":null}
+SM_INPUT_DATA_CONFIG={"test":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"},"train":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"}}
+SM_OUTPUT_DATA_DIR=/opt/ml/output/data
+SM_CHANNELS=["test","train"]
+SM_CURRENT_HOST=algo-1
+SM_CURRENT_INSTANCE_TYPE=ml.g5.2xlarge
+SM_CURRENT_INSTANCE_GROUP=homogeneousCluster
+SM_CURRENT_INSTANCE_GROUP_HOSTS=["algo-1"]
+SM_INSTANCE_GROUPS=["homogeneousCluster"]
+SM_INSTANCE_GROUPS_DICT={"homogeneousCluster":{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}}
+SM_DISTRIBUTION_INSTANCE_GROUPS=[]
+SM_IS_HETERO=false
+SM_MODULE_NAME=train
+SM_LOG_LEVEL=20
+SM_FRAMEWORK_MODULE=sagemaker_pytorch_container.training:main
+SM_INPUT_DIR=/opt/ml/input
+SM_INPUT_CONFIG_DIR=/opt/ml/input/config
+SM_OUTPUT_DIR=/opt/ml/output
+SM_NUM_CPUS=8
+SM_NUM_GPUS=1
+SM_NUM_NEURONS=0
+SM_MODEL_DIR=/opt/ml/model
+SM_MODULE_DIR=s3://sagemaker-eu-west-1-267567228900/ag-news-pytorch-20250721-2052/source/sourcedir.tar.gz
+SM_TRAINING_ENV={"additional_framework_parameters":{},"channel_input_dirs":{"test":"/opt/ml/input/data/test","train":"/opt/ml/input/data/train"},"current_host":"algo-1","current_instance_group":"homogeneousCluster","current_instance_group_hosts":["algo-1"],"current_instance_type":"ml.g5.2xlarge","distribution_hosts":[],"distribution_instance_groups":[],"framework_module":"sagemaker_pytorch_container.training:main","hosts":["algo-1"],"hyperparameters":{"batch_size":16,"epochs":3,"learning_rate":0.0001,"max_seq_length":4096,"test_path":"s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl"},"input_config_dir":"/opt/ml/input/config","input_data_config":{"test":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"},"train":{"RecordWrapperType":"None","S3DistributionType":"FullyReplicated","TrainingInputMode":"File"}},"input_dir":"/opt/ml/input","instance_groups":["homogeneousCluster"],"instance_groups_dict":{"homogeneousCluster":{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}},"is_hetero":false,"is_master":true,"is_modelparallel_enabled":null,"is_smddpmprun_installed":false,"is_smddprun_installed":false,"job_name":"ag-news-pytorch-20250721-2052","log_level":20,"master_hostname":"algo-1","model_dir":"/opt/ml/model","module_dir":"s3://sagemaker-eu-west-1-267567228900/ag-news-pytorch-20250721-2052/source/sourcedir.tar.gz","module_name":"train","network_interface_name":"eth0","num_cpus":8,"num_gpus":1,"num_neurons":0,"output_data_dir":"/opt/ml/output/data","output_dir":"/opt/ml/output","output_intermediate_dir":"/opt/ml/output/intermediate","resource_config":{"current_group_name":"homogeneousCluster","current_host":"algo-1","current_instance_type":"ml.g5.2xlarge","hosts":["algo-1"],"instance_groups":[{"hosts":["algo-1"],"instance_group_name":"homogeneousCluster","instance_type":"ml.g5.2xlarge"}],"network_interface_name":"eth0","topology":null},"user_entry_point":"train.py"}
+SM_USER_ARGS=["--batch_size","16","--epochs","3","--learning_rate","0.0001","--max_seq_length","4096","--test_path","s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl"]
+SM_OUTPUT_INTERMEDIATE_DIR=/opt/ml/output/intermediate
+SM_CHANNEL_TEST=/opt/ml/input/data/test
+SM_CHANNEL_TRAIN=/opt/ml/input/data/train
+SM_HP_BATCH_SIZE=16
+SM_HP_EPOCHS=3
+SM_HP_LEARNING_RATE=0.0001
+SM_HP_MAX_SEQ_LENGTH=4096
+SM_HP_TEST_PATH=s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl
+PYTHONPATH=/opt/ml/code:/usr/local/bin:/usr/local/lib/python312.zip:/usr/local/lib/python3.12:/usr/local/lib/python3.12/lib-dynload:/usr/local/lib/python3.12/site-packages
+Invoking script with the following command:
+/usr/local/bin/python train.py --batch_size 16 --epochs 3 --learning_rate 0.0001 --max_seq_length 4096 --test_path s3://sagemaker-eu-west-1-267567228900/new/data/test.jsonl
+2025-07-21 21:09:53,553 sagemaker-training-toolkit INFO     Exceptions not imported for SageMaker Debugger as it is not installed.
+2025-07-21 21:09:53,553 sagemaker-training-toolkit INFO     Exceptions not imported for SageMaker TF as Tensorflow is not installed.
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+/usr/local/lib/python3.12/site-packages/transformers/utils/hub.py:111: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+🦥 Unsloth Zoo will now patch everything to make training faster!
+==((====))==  Unsloth 2025.7.6: Fast Llama patching. Transformers: 4.53.2.
+   \\   /|    NVIDIA A10G. Num GPUs = 1. Max memory: 22.184 GB. Platform: Linux.
+O^O/ \_/ \    Torch: 2.6.0+cu126. CUDA: 8.6. CUDA Toolkit: 12.6. Triton: 3.2.0
+\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.29.post3. FA2 = True]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Total parameters in the original model: 1,235,814,400
+Unsloth 2025.7.6 patched 16 layers with 16 QKV layers, 16 O layers and 16 MLP layers.
+Unsloth 2025.7.6 patched 16 layers with 16 QKV layers, 16 O layers and 16 MLP layers.
+Trainable parameters after applying LoRA: 11,272,192
+Percentage of trainable parameters: 0.91%
+Unsloth: Tokenizing ["text"]:   0%|          | 0/120000 [00:00<?, ? examples/s]
+Unsloth: Tokenizing ["text"]:   1%|          | 1000/120000 [00:00<00:17, 6832.33 examples/s]
+Unsloth: Tokenizing ["text"]:   2%|▏         | 2000/120000 [00:00<00:17, 6807.49 examples/s]
+Unsloth: Tokenizing ["text"]:   2%|▎         | 3000/120000 [00:00<00:17, 6771.07 examples/s]
+Unsloth: Tokenizing ["text"]:   3%|▎         | 4000/120000 [00:00<00:16, 6902.05 examples/s]
+Unsloth: Tokenizing ["text"]:   4%|▍         | 5000/120000 [00:00<00:16, 7039.96 examples/s]
+Unsloth: Tokenizing ["text"]:   5%|▌         | 6000/120000 [00:00<00:16, 6913.66 examples/s]
+Unsloth: Tokenizing ["text"]:   6%|▌         | 7000/120000 [00:01<00:16, 7015.07 examples/s]
+Unsloth: Tokenizing ["text"]:   7%|▋         | 8000/120000 [00:01<00:15, 7004.93 examples/s]
+Unsloth: Tokenizing ["text"]:   8%|▊         | 9000/120000 [00:01<00:15, 7007.28 examples/s]
+Unsloth: Tokenizing ["text"]:   8%|▊         | 10000/120000 [00:01<00:15, 6986.46 examples/s]
+Unsloth: Tokenizing ["text"]:   9%|▉         | 11000/120000 [00:01<00:15, 6925.28 examples/s]
+Unsloth: Tokenizing ["text"]:  10%|█         | 12000/120000 [00:01<00:15, 6794.55 examples/s]
+Unsloth: Tokenizing ["text"]:  11%|█         | 13000/120000 [00:01<00:15, 6855.25 examples/s]
+Unsloth: Tokenizing ["text"]:  12%|█▏        | 14000/120000 [00:02<00:15, 6882.27 examples/s]
+Unsloth: Tokenizing ["text"]:  12%|█▎        | 15000/120000 [00:02<00:15, 6831.36 examples/s]
+Unsloth: Tokenizing ["text"]:  13%|█▎        | 16000/120000 [00:02<00:14, 6946.99 examples/s]
+Unsloth: Tokenizing ["text"]:  14%|█▍        | 17000/120000 [00:02<00:14, 6927.57 examples/s]
+Unsloth: Tokenizing ["text"]:  15%|█▌        | 18000/120000 [00:02<00:14, 6912.88 examples/s]
+Unsloth: Tokenizing ["text"]:  16%|█▌        | 19000/120000 [00:02<00:14, 6933.47 examples/s]
+Unsloth: Tokenizing ["text"]:  17%|█▋        | 20000/120000 [00:02<00:14, 6883.70 examples/s]
+Unsloth: Tokenizing ["text"]:  18%|█▊        | 21000/120000 [00:03<00:14, 6943.90 examples/s]
+Unsloth: Tokenizing ["text"]:  18%|█▊        | 22000/120000 [00:03<00:14, 6990.63 examples/s]
+Unsloth: Tokenizing ["text"]:  19%|█▉        | 23000/120000 [00:03<00:14, 6691.34 examples/s]
+Unsloth: Tokenizing ["text"]:  20%|██        | 24000/120000 [00:03<00:14, 6738.28 examples/s]
+Unsloth: Tokenizing ["text"]:  21%|██        | 25000/120000 [00:03<00:13, 6789.44 examples/s]
+Unsloth: Tokenizing ["text"]:  22%|██▏       | 26000/120000 [00:03<00:13, 6847.12 examples/s]
+Unsloth: Tokenizing ["text"]:  22%|██▎       | 27000/120000 [00:03<00:13, 6943.19 examples/s]
+Unsloth: Tokenizing ["text"]:  23%|██▎       | 28000/120000 [00:04<00:13, 6948.16 examples/s]
+Unsloth: Tokenizing ["text"]:  24%|██▍       | 29000/120000 [00:04<00:13, 6910.61 examples/s]
+Unsloth: Tokenizing ["text"]:  25%|██▌       | 30000/120000 [00:04<00:12, 7016.16 examples/s]
+Unsloth: Tokenizing ["text"]:  26%|██▌       | 31000/120000 [00:04<00:12, 7105.21 examples/s]
+Unsloth: Tokenizing ["text"]:  27%|██▋       | 32000/120000 [00:04<00:12, 7017.18 examples/s]
+Unsloth: Tokenizing ["text"]:  28%|██▊       | 33000/120000 [00:04<00:12, 7010.97 examples/s]
+Unsloth: Tokenizing ["text"]:  28%|██▊       | 34000/120000 [00:04<00:12, 6995.39 examples/s]
+Unsloth: Tokenizing ["text"]:  29%|██▉       | 35000/120000 [00:05<00:12, 6919.18 examples/s]
+Unsloth: Tokenizing ["text"]:  30%|███       | 36000/120000 [00:05<00:11, 7000.62 examples/s]
+Unsloth: Tokenizing ["text"]:  31%|███       | 37000/120000 [00:05<00:11, 7111.63 examples/s]
+Unsloth: Tokenizing ["text"]:  32%|███▏      | 38000/120000 [00:05<00:11, 7126.38 examples/s]
+Unsloth: Tokenizing ["text"]:  32%|███▎      | 39000/120000 [00:05<00:11, 7177.81 examples/s]
+Unsloth: Tokenizing ["text"]:  33%|███▎      | 40000/120000 [00:05<00:11, 7113.40 examples/s]
+Unsloth: Tokenizing ["text"]:  34%|███▍      | 41000/120000 [00:05<00:11, 6966.12 examples/s]
+Unsloth: Tokenizing ["text"]:  35%|███▌      | 42000/120000 [00:06<00:11, 6925.76 examples/s]
+Unsloth: Tokenizing ["text"]:  36%|███▌      | 43000/120000 [00:06<00:11, 6940.82 examples/s]
+Unsloth: Tokenizing ["text"]:  37%|███▋      | 44000/120000 [00:06<00:10, 6932.38 examples/s]
+Unsloth: Tokenizing ["text"]:  38%|███▊      | 45000/120000 [00:06<00:10, 7021.05 examples/s]
+Unsloth: Tokenizing ["text"]:  38%|███▊      | 46000/120000 [00:06<00:11, 6533.47 examples/s]
+Unsloth: Tokenizing ["text"]:  39%|███▉      | 47000/120000 [00:06<00:10, 6697.50 examples/s]
+Unsloth: Tokenizing ["text"]:  40%|████      | 48000/120000 [00:06<00:10, 6695.37 examples/s]
+Unsloth: Tokenizing ["text"]:  41%|████      | 49000/120000 [00:07<00:10, 6891.26 examples/s]
+Unsloth: Tokenizing ["text"]:  42%|████▏     | 50000/120000 [00:07<00:10, 6926.63 examples/s]
+Unsloth: Tokenizing ["text"]:  42%|████▎     | 51000/120000 [00:07<00:09, 6939.70 examples/s]
+Unsloth: Tokenizing ["text"]:  43%|████▎     | 52000/120000 [00:07<00:09, 6927.45 examples/s]
+Unsloth: Tokenizing ["text"]:  44%|████▍     | 53000/120000 [00:07<00:09, 6984.42 examples/s]
+Unsloth: Tokenizing ["text"]:  45%|████▌     | 54000/120000 [00:07<00:09, 6936.04 examples/s]
+Unsloth: Tokenizing ["text"]:  46%|████▌     | 55000/120000 [00:07<00:09, 6894.45 examples/s]
+Unsloth: Tokenizing ["text"]:  47%|████▋     | 56000/120000 [00:08<00:09, 6920.19 examples/s]
+Unsloth: Tokenizing ["text"]:  48%|████▊     | 57000/120000 [00:08<00:13, 4842.74 examples/s]
+Unsloth: Tokenizing ["text"]:  48%|████▊     | 58000/120000 [00:08<00:11, 5295.23 examples/s]
+Unsloth: Tokenizing ["text"]:  49%|████▉     | 59000/120000 [00:08<00:10, 5647.34 examples/s]
+Unsloth: Tokenizing ["text"]:  50%|█████     | 60000/120000 [00:08<00:10, 5937.34 examples/s]
+Unsloth: Tokenizing ["text"]:  51%|█████     | 61000/120000 [00:09<00:09, 6202.23 examples/s]
+Unsloth: Tokenizing ["text"]:  52%|█████▏    | 62000/120000 [00:09<00:09, 6367.29 examples/s]
+Unsloth: Tokenizing ["text"]:  52%|█████▎    | 63000/120000 [00:09<00:08, 6450.44 examples/s]
+Unsloth: Tokenizing ["text"]:  53%|█████▎    | 64000/120000 [00:09<00:08, 6624.85 examples/s]
+Unsloth: Tokenizing ["text"]:  54%|█████▍    | 65000/120000 [00:09<00:08, 6681.85 examples/s]
+Unsloth: Tokenizing ["text"]:  55%|█████▌    | 66000/120000 [00:09<00:08, 6723.37 examples/s]
+Unsloth: Tokenizing ["text"]:  56%|█████▌    | 67000/120000 [00:09<00:07, 6781.40 examples/s]
+Unsloth: Tokenizing ["text"]:  57%|█████▋    | 68000/120000 [00:10<00:07, 6775.47 examples/s]
+Unsloth: Tokenizing ["text"]:  57%|█████▊    | 69000/120000 [00:10<00:07, 6710.11 examples/s]
+Unsloth: Tokenizing ["text"]:  58%|█████▊    | 70000/120000 [00:10<00:07, 6731.03 examples/s]
+Unsloth: Tokenizing ["text"]:  59%|█████▉    | 71000/120000 [00:10<00:07, 6713.09 examples/s]
+Unsloth: Tokenizing ["text"]:  60%|██████    | 72000/120000 [00:10<00:07, 6766.72 examples/s]
+Unsloth: Tokenizing ["text"]:  61%|██████    | 73000/120000 [00:10<00:06, 6822.47 examples/s]
+Unsloth: Tokenizing ["text"]:  62%|██████▏   | 74000/120000 [00:10<00:06, 6895.39 examples/s]
+Unsloth: Tokenizing ["text"]:  62%|██████▎   | 75000/120000 [00:11<00:06, 6838.29 examples/s]
+Unsloth: Tokenizing ["text"]:  63%|██████▎   | 76000/120000 [00:11<00:06, 6873.18 examples/s]
+Unsloth: Tokenizing ["text"]:  64%|██████▍   | 77000/120000 [00:11<00:06, 6809.71 examples/s]
+Unsloth: Tokenizing ["text"]:  65%|██████▌   | 78000/120000 [00:11<00:06, 6748.02 examples/s]
+Unsloth: Tokenizing ["text"]:  66%|██████▌   | 79000/120000 [00:11<00:06, 6824.13 examples/s]
+Unsloth: Tokenizing ["text"]:  67%|██████▋   | 80000/120000 [00:11<00:05, 6798.84 examples/s]
+Unsloth: Tokenizing ["text"]:  68%|██████▊   | 81000/120000 [00:11<00:05, 6795.52 examples/s]
+Unsloth: Tokenizing ["text"]:  68%|██████▊   | 82000/120000 [00:12<00:05, 6953.65 examples/s]
+Unsloth: Tokenizing ["text"]:  69%|██████▉   | 83000/120000 [00:12<00:05, 6834.76 examples/s]
+Unsloth: Tokenizing ["text"]:  70%|███████   | 84000/120000 [00:12<00:05, 6777.63 examples/s]
+Unsloth: Tokenizing ["text"]:  71%|███████   | 85000/120000 [00:12<00:05, 6839.16 examples/s]
+Unsloth: Tokenizing ["text"]:  72%|███████▏  | 86000/120000 [00:12<00:04, 6914.26 examples/s]
+Unsloth: Tokenizing ["text"]:  72%|███████▎  | 87000/120000 [00:12<00:04, 6850.13 examples/s]
+Unsloth: Tokenizing ["text"]:  73%|███████▎  | 88000/120000 [00:12<00:04, 6908.31 examples/s]
+Unsloth: Tokenizing ["text"]:  74%|███████▍  | 89000/120000 [00:13<00:04, 6896.46 examples/s]
+Unsloth: Tokenizing ["text"]:  75%|███████▌  | 90000/120000 [00:13<00:04, 6891.59 examples/s]
+Unsloth: Tokenizing ["text"]:  76%|███████▌  | 91000/120000 [00:13<00:04, 5976.98 examples/s]
+Unsloth: Tokenizing ["text"]:  77%|███████▋  | 92000/120000 [00:13<00:04, 6279.06 examples/s]
+Unsloth: Tokenizing ["text"]:  78%|███████▊  | 93000/120000 [00:13<00:04, 6427.38 examples/s]
+Unsloth: Tokenizing ["text"]:  78%|███████▊  | 94000/120000 [00:13<00:03, 6551.91 examples/s]
+Unsloth: Tokenizing ["text"]:  79%|███████▉  | 95000/120000 [00:14<00:03, 6672.68 examples/s]
+Unsloth: Tokenizing ["text"]:  80%|████████  | 96000/120000 [00:14<00:03, 6704.38 examples/s]
+Unsloth: Tokenizing ["text"]:  81%|████████  | 97000/120000 [00:14<00:03, 6786.54 examples/s]
+Unsloth: Tokenizing ["text"]:  82%|████████▏ | 98000/120000 [00:14<00:03, 6809.44 examples/s]
+Unsloth: Tokenizing ["text"]:  82%|████████▎ | 99000/120000 [00:14<00:03, 6848.89 examples/s]
+Unsloth: Tokenizing ["text"]:  83%|████████▎ | 100000/120000 [00:14<00:02, 6879.45 examples/s]
+Unsloth: Tokenizing ["text"]:  84%|████████▍ | 101000/120000 [00:14<00:02, 6840.65 examples/s]
+Unsloth: Tokenizing ["text"]:  85%|████████▌ | 102000/120000 [00:15<00:02, 6874.45 examples/s]
+Unsloth: Tokenizing ["text"]:  86%|████████▌ | 103000/120000 [00:15<00:02, 7010.83 examples/s]
+Unsloth: Tokenizing ["text"]:  87%|████████▋ | 104000/120000 [00:15<00:02, 7075.32 examples/s]
+Unsloth: Tokenizing ["text"]:  88%|████████▊ | 105000/120000 [00:15<00:02, 7035.51 examples/s]
+Unsloth: Tokenizing ["text"]:  88%|████████▊ | 106000/120000 [00:15<00:01, 7051.39 examples/s]
+Unsloth: Tokenizing ["text"]:  89%|████████▉ | 107000/120000 [00:15<00:02, 4905.30 examples/s]
+Unsloth: Tokenizing ["text"]:  90%|█████████ | 108000/120000 [00:16<00:02, 5374.71 examples/s]
+Unsloth: Tokenizing ["text"]:  91%|█████████ | 109000/120000 [00:16<00:01, 5711.77 examples/s]
+Unsloth: Tokenizing ["text"]:  92%|█████████▏| 110000/120000 [00:16<00:01, 5968.91 examples/s]
+Unsloth: Tokenizing ["text"]:  92%|█████████▎| 111000/120000 [00:16<00:01, 6228.54 examples/s]
+Unsloth: Tokenizing ["text"]:  93%|█████████▎| 112000/120000 [00:16<00:01, 6411.68 examples/s]
+Unsloth: Tokenizing ["text"]:  94%|█████████▍| 113000/120000 [00:16<00:01, 6511.28 examples/s]
+Unsloth: Tokenizing ["text"]:  95%|█████████▌| 114000/120000 [00:17<00:00, 6559.27 examples/s]
+Unsloth: Tokenizing ["text"]:  96%|█████████▌| 115000/120000 [00:17<00:00, 6667.93 examples/s]
+Unsloth: Tokenizing ["text"]:  97%|█████████▋| 116000/120000 [00:17<00:00, 6735.82 examples/s]
+Unsloth: Tokenizing ["text"]:  98%|█████████▊| 117000/120000 [00:17<00:00, 6799.03 examples/s]
+Unsloth: Tokenizing ["text"]:  98%|█████████▊| 118000/120000 [00:17<00:00, 6822.87 examples/s]
+Unsloth: Tokenizing ["text"]:  99%|█████████▉| 119000/120000 [00:17<00:00, 6818.09 examples/s]
+Unsloth: Tokenizing ["text"]: 100%|██████████| 120000/120000 [00:17<00:00, 6851.06 examples/s]
+Unsloth: Tokenizing ["text"]: 100%|██████████| 120000/120000 [00:17<00:00, 6704.22 examples/s]
+Unsloth: Tokenizing ["text"]:   0%|          | 0/7600 [00:00<?, ? examples/s]
+Unsloth: Tokenizing ["text"]:  13%|█▎        | 1000/7600 [00:00<00:00, 7004.73 examples/s]
+Unsloth: Tokenizing ["text"]:  26%|██▋       | 2000/7600 [00:00<00:00, 7130.68 examples/s]
+Unsloth: Tokenizing ["text"]:  39%|███▉      | 3000/7600 [00:00<00:00, 7072.98 examples/s]
+Unsloth: Tokenizing ["text"]:  53%|█████▎    | 4000/7600 [00:00<00:00, 7114.60 examples/s]
+Unsloth: Tokenizing ["text"]:  66%|██████▌   | 5000/7600 [00:00<00:00, 7064.06 examples/s]
+Unsloth: Tokenizing ["text"]:  79%|███████▉  | 6000/7600 [00:00<00:00, 6998.39 examples/s]
+Unsloth: Tokenizing ["text"]:  92%|█████████▏| 7000/7600 [00:00<00:00, 6990.18 examples/s]
+Unsloth: Tokenizing ["text"]: 100%|██████████| 7600/7600 [00:01<00:00, 6983.06 examples/s]
+Map (num_proc=8):   0%|          | 0/120000 [00:00<?, ? examples/s]
+Map (num_proc=8):   1%|          | 1000/120000 [00:00<00:41, 2848.91 examples/s]
+Map (num_proc=8):   2%|▏         | 2000/120000 [00:00<00:26, 4407.16 examples/s]
+Map (num_proc=8):   3%|▎         | 4000/120000 [00:00<00:14, 7759.93 examples/s]
+Map (num_proc=8):   6%|▌         | 7000/120000 [00:00<00:09, 11919.94 examples/s]
+Map (num_proc=8):   9%|▉         | 11000/120000 [00:00<00:06, 16726.20 examples/s]
+Map (num_proc=8):  13%|█▎        | 16000/120000 [00:01<00:04, 22162.82 examples/s]
+Map (num_proc=8):  17%|█▋        | 20000/120000 [00:01<00:03, 25885.04 examples/s]
+Map (num_proc=8):  20%|██        | 24000/120000 [00:01<00:03, 27122.38 examples/s]
+Map (num_proc=8):  24%|██▍       | 29000/120000 [00:01<00:02, 31426.99 examples/s]
+Map (num_proc=8):  29%|██▉       | 35000/120000 [00:01<00:02, 36352.43 examples/s]
+Map (num_proc=8):  33%|███▎      | 40000/120000 [00:01<00:02, 35939.96 examples/s]
+Map (num_proc=8):  38%|███▊      | 46000/120000 [00:01<00:01, 39110.17 examples/s]
+Map (num_proc=8):  42%|████▎     | 51000/120000 [00:01<00:01, 41548.06 examples/s]
+Map (num_proc=8):  47%|████▋     | 56000/120000 [00:02<00:01, 39202.81 examples/s]
+Map (num_proc=8):  52%|█████▏    | 62000/120000 [00:02<00:01, 42823.88 examples/s]
+Map (num_proc=8):  56%|█████▌    | 67000/120000 [00:02<00:01, 42288.92 examples/s]
+Map (num_proc=8):  60%|██████    | 72000/120000 [00:02<00:01, 39549.27 examples/s]
+Map (num_proc=8):  65%|██████▌   | 78000/120000 [00:02<00:00, 43639.48 examples/s]
+Map (num_proc=8):  69%|██████▉   | 83000/120000 [00:02<00:00, 42784.59 examples/s]
+Map (num_proc=8):  73%|███████▎  | 88000/120000 [00:02<00:00, 40818.50 examples/s]
+Map (num_proc=8):  78%|███████▊  | 93000/120000 [00:02<00:00, 42678.76 examples/s]
+Map (num_proc=8):  82%|████████▏ | 98000/120000 [00:03<00:00, 40592.52 examples/s]
+Map (num_proc=8):  86%|████████▌ | 103000/120000 [00:03<00:00, 19426.71 examples/s]
+Map (num_proc=8):  94%|█████████▍| 113000/120000 [00:04<00:00, 21551.77 examples/s]
+Map (num_proc=8):  97%|█████████▋| 116000/120000 [00:04<00:00, 21971.70 examples/s]
+Map (num_proc=8): 100%|██████████| 120000/120000 [00:04<00:00, 16692.45 examples/s]
+Map (num_proc=8): 100%|██████████| 120000/120000 [00:06<00:00, 19690.86 examples/s]
+Map (num_proc=8):   0%|          | 0/7600 [00:00<?, ? examples/s]
+Map (num_proc=8):  12%|█▎        | 950/7600 [00:00<00:01, 4607.53 examples/s]
+Map (num_proc=8):  50%|█████     | 3800/7600 [00:00<00:00, 14125.08 examples/s]
+Map (num_proc=8): 100%|██████████| 7600/7600 [00:00<00:00, 14769.66 examples/s]
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 120,000 | Num Epochs = 3 | Total steps = 5,625
+O^O/ \_/ \    Batch size per device = 16 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (16 x 4 x 1) = 64
+ "-____-"     Trainable parameters = 11,272,192 of 1,247,086,592 (0.90% trained)
+==((====))==  Unsloth - 2x faster free finetuning | Num GPUs used = 1
+   \\   /|    Num examples = 120,000 | Num Epochs = 3 | Total steps = 5,625
+O^O/ \_/ \    Batch size per device = 16 | Gradient accumulation steps = 4
+\        /    Data Parallel GPUs = 1 | Total batch size (16 x 4 x 1) = 64
+ "-____-"     Trainable parameters = 11,272,192 of 1,247,086,592 (0.90% trained)
+0%|          | 0/5625 [00:00<?, ?it/s]
+Unsloth: Will smartly offload gradients to save VRAM!
+0%|          | 1/5625 [00:09<14:44:20,  9.43s/it]
+0%|          | 2/5625 [00:11<7:36:34,  4.87s/it]
+0%|          | 3/5625 [00:12<5:17:59,  3.39s/it]
+0%|          | 4/5625 [00:14<4:25:01,  2.83s/it]
+0%|          | 5/5625 [00:17<4:09:08,  2.66s/it]
+0%|          | 6/5625 [00:18<3:37:16,  2.32s/it]
+0%|          | 7/5625 [00:20<3:18:00,  2.11s/it]
+0%|          | 8/5625 [00:25<4:59:43,  3.20s/it]
+0%|          | 9/5625 [00:27<4:12:48,  2.70s/it]
+0%|          | 10/5625 [00:29<3:52:40,  2.49s/it]
+{'loss': 1.627, 'grad_norm': 6.910847187042236, 'learning_rate': 1.5985790408525755e-06, 'epoch': 0.01}
+0%|          | 10/5625 [00:29<3:52:40,  2.49s/it]
+0%|          | 11/5625 [00:31<3:39:16,  2.34s/it]
+0%|          | 12/5625 [00:33<3:23:48,  2.18s/it]
+0%|          | 13/5625 [00:35<3:08:16,  2.01s/it]
+0%|          | 14/5625 [00:36<2:59:29,  1.92s/it]
+0%|          | 15/5625 [00:38<2:55:06,  1.87s/it]
+0%|          | 16/5625 [00:40<2:55:08,  1.87s/it]
+0%|          | 17/5625 [00:42<3:06:18,  1.99s/it]
+0%|          | 18/5625 [00:44<2:55:33,  1.88s/it]
+0%|          | 19/5625 [00:45<2:46:42,  1.78s/it]
+0%|          | 20/5625 [00:47<2:41:47,  1.73s/it]
+{'loss': 1.5987, 'grad_norm': 6.77948522567749, 'learning_rate': 3.374777975133215e-06, 'epoch': 0.01}
+0%|          | 20/5625 [00:47<2:41:47,  1.73s/it]
+0%|          | 21/5625 [00:49<2:46:23,  1.78s/it]
+0%|          | 22/5625 [00:51<2:49:21,  1.81s/it]
+0%|          | 23/5625 [00:52<2:45:59,  1.78s/it]
+0%|          | 24/5625 [00:54<2:45:38,  1.77s/it]
+0%|          | 25/5625 [00:56<2:38:25,  1.70s/it]
+0%|          | 26/5625 [00:57<2:32:59,  1.64s/it]
+0%|          | 27/5625 [00:59<2:33:33,  1.65s/it]
+0%|          | 28/5625 [01:01<2:37:17,  1.69s/it]
+1%|          | 29/5625 [01:03<2:46:46,  1.79s/it]
+1%|          | 30/5625 [01:04<2:37:02,  1.68s/it]
+{'loss': 1.5412, 'grad_norm': 7.051853179931641, 'learning_rate': 5.150976909413855e-06, 'epoch': 0.02}
+1%|          | 30/5625 [01:04<2:37:02,  1.68s/it]
+1%|          | 31/5625 [01:06<2:37:03,  1.68s/it]
+1%|          | 32/5625 [01:08<2:45:55,  1.78s/it]
+1%|          | 33/5625 [01:09<2:42:36,  1.74s/it]
+1%|          | 34/5625 [01:11<2:43:23,  1.75s/it]
+1%|          | 35/5625 [01:13<2:43:49,  1.76s/it]
+1%|          | 36/5625 [01:15<2:44:08,  1.76s/it]
+1%|          | 37/5625 [01:16<2:39:14,  1.71s/it]
+1%|          | 38/5625 [01:18<2:37:29,  1.69s/it]
+1%|          | 39/5625 [01:20<2:41:20,  1.73s/it]
+1%|          | 40/5625 [01:22<2:40:36,  1.73s/it]
+{'loss': 1.2935, 'grad_norm': 5.854650974273682, 'learning_rate': 6.927175843694494e-06, 'epoch': 0.02}
+1%|          | 40/5625 [01:22<2:40:36,  1.73s/it]
+1%|          | 41/5625 [01:23<2:41:54,  1.74s/it]
+1%|          | 42/5625 [01:25<2:44:04,  1.76s/it]
+1%|          | 43/5625 [01:27<2:41:08,  1.73s/it]
+1%|          | 44/5625 [01:29<2:41:58,  1.74s/it]
+1%|          | 45/5625 [01:30<2:43:16,  1.76s/it]
+1%|          | 46/5625 [01:32<2:38:45,  1.71s/it]
+1%|          | 47/5625 [01:34<2:42:50,  1.75s/it]
+1%|          | 48/5625 [01:36<2:48:09,  1.81s/it]
+1%|          | 49/5625 [01:38<2:48:15,  1.81s/it]
+1%|          | 50/5625 [01:39<2:40:35,  1.73s/it]
+{'loss': 0.8338, 'grad_norm': 3.8265349864959717, 'learning_rate': 8.703374777975133e-06, 'epoch': 0.03}
+1%|          | 50/5625 [01:39<2:40:35,  1.73s/it]
+1%|          | 51/5625 [01:41<2:45:56,  1.79s/it]
+1%|          | 52/5625 [01:43<2:46:17,  1.79s/it]
+1%|          | 53/5625 [01:45<2:49:23,  1.82s/it]
+1%|          | 54/5625 [01:46<2:46:47,  1.80s/it]
+1%|          | 55/5625 [01:48<2:41:51,  1.74s/it]
+1%|          | 56/5625 [01:50<2:38:36,  1.71s/it]
+1%|          | 57/5625 [01:51<2:38:17,  1.71s/it]
+1%|          | 58/5625 [01:53<2:41:31,  1.74s/it]
+1%|          | 59/5625 [01:55<2:38:42,  1.71s/it]
+1%|          | 60/5625 [01:57<2:39:36,  1.72s/it]
+{'loss': 0.3335, 'grad_norm': 1.770188331604004, 'learning_rate': 1.0479573712255773e-05, 'epoch': 0.03}
+1%|          | 60/5625 [01:57<2:39:36,  1.72s/it]
+1%|          | 61/5625 [01:58<2:43:34,  1.76s/it]
+1%|          | 62/5625 [02:00<2:47:42,  1.81s/it]
+1%|          | 63/5625 [02:02<2:47:19,  1.80s/it]
+1%|          | 64/5625 [02:04<2:45:25,  1.78s/it]
+1%|          | 65/5625 [02:06<2:43:02,  1.76s/it]
+1%|          | 66/5625 [02:07<2:42:10,  1.75s/it]
+1%|          | 67/5625 [02:09<2:45:43,  1.79s/it]
+1%|          | 68/5625 [02:11<2:47:12,  1.81s/it]
+1%|          | 69/5625 [02:13<2:47:17,  1.81s/it]
+1%|          | 70/5625 [02:14<2:41:57,  1.75s/it]
+{'loss': 0.0844, 'grad_norm': 0.5302379727363586, 'learning_rate': 1.2255772646536412e-05, 'epoch': 0.04}
+1%|          | 70/5625 [02:14<2:41:57,  1.75s/it]
+1%|▏         | 71/5625 [02:16<2:38:42,  1.71s/it]
+1%|▏         | 72/5625 [02:18<2:43:04,  1.76s/it]
+1%|▏         | 73/5625 [02:20<2:43:43,  1.77s/it]
+1%|▏         | 74/5625 [02:21<2:39:12,  1.72s/it]
+1%|▏         | 75/5625 [02:23<2:42:59,  1.76s/it]
+1%|▏         | 76/5625 [02:25<2:40:17,  1.73s/it]
+1%|▏         | 77/5625 [02:26<2:35:52,  1.69s/it]
+1%|▏         | 78/5625 [02:28<2:36:34,  1.69s/it]
+1%|▏         | 79/5625 [02:30<2:32:58,  1.65s/it]
+1%|▏         | 80/5625 [02:31<2:29:18,  1.62s/it]
+{'loss': 0.0443, 'grad_norm': 0.9302794337272644, 'learning_rate': 1.4031971580817053e-05, 'epoch': 0.04}
+1%|▏         | 80/5625 [02:31<2:29:18,  1.62s/it]
+1%|▏         | 81/5625 [02:33<2:31:53,  1.64s/it]
+1%|▏         | 82/5625 [02:35<2:33:44,  1.66s/it]
+1%|▏         | 83/5625 [02:37<2:37:44,  1.71s/it]
+1%|▏         | 84/5625 [02:38<2:39:17,  1.72s/it]
+2%|▏         | 85/5625 [02:40<2:35:44,  1.69s/it]
+2%|▏         | 86/5625 [02:42<2:37:30,  1.71s/it]
+2%|▏         | 87/5625 [02:43<2:34:05,  1.67s/it]
+2%|▏         | 88/5625 [02:45<2:29:21,  1.62s/it]
+2%|▏         | 89/5625 [02:46<2:31:49,  1.65s/it]
+2%|▏         | 90/5625 [02:48<2:40:53,  1.74s/it]
+{'loss': 0.033, 'grad_norm': 0.24778369069099426, 'learning_rate': 1.5808170515097693e-05, 'epoch': 0.05}
+2%|▏         | 90/5625 [02:48<2:40:53,  1.74s/it]
+2%|▏         | 91/5625 [02:50<2:36:22,  1.70s/it]
+2%|▏         | 92/5625 [02:52<2:40:01,  1.74s/it]
+2%|▏         | 93/5625 [02:53<2:38:05,  1.71s/it]
+2%|▏         | 94/5625 [02:55<2:38:39,  1.72s/it]
+2%|▏         | 95/5625 [02:57<2:42:29,  1.76s/it]
+2%|▏         | 96/5625 [02:59<2:44:24,  1.78s/it]
+2%|▏         | 97/5625 [03:01<2:43:49,  1.78s/it]
+2%|▏         | 98/5625 [03:02<2:43:07,  1.77s/it]
+2%|▏         | 99/5625 [03:04<2:41:31,  1.75s/it]
+2%|▏         | 100/5625 [03:06<2:43:00,  1.77s/it]
+{'loss': 0.0305, 'grad_norm': 0.2802577018737793, 'learning_rate': 1.7584369449378333e-05, 'epoch': 0.05}
+2%|▏         | 100/5625 [03:06<2:43:00,  1.77s/it]
+2%|▏         | 101/5625 [03:08<2:42:04,  1.76s/it]
+2%|▏         | 102/5625 [03:09<2:39:42,  1.74s/it]
+2%|▏         | 103/5625 [03:11<2:37:04,  1.71s/it]
+2%|▏         | 104/5625 [03:13<2:38:29,  1.72s/it]
+2%|▏         | 105/5625 [03:15<2:39:49,  1.74s/it]
+2%|▏         | 106/5625 [03:16<2:37:58,  1.72s/it]
+2%|▏         | 107/5625 [03:18<2:30:24,  1.64s/it]
+2%|▏         | 108/5625 [03:19<2:31:48,  1.65s/it]
+2%|▏         | 109/5625 [03:21<2:40:03,  1.74s/it]
+2%|▏         | 110/5625 [03:23<2:46:59,  1.82s/it]
+{'loss': 0.0349, 'grad_norm': 0.4334057569503784, 'learning_rate': 1.936056838365897e-05, 'epoch': 0.06}
+2%|▏         | 110/5625 [03:23<2:46:59,  1.82s/it]
+2%|▏         | 111/5625 [03:25<2:40:26,  1.75s/it]
+2%|▏         | 112/5625 [03:27<2:43:59,  1.78s/it]
+2%|▏         | 113/5625 [03:28<2:38:58,  1.73s/it]
+2%|▏         | 114/5625 [03:30<2:40:31,  1.75s/it]
+2%|▏         | 115/5625 [03:32<2:48:38,  1.84s/it]
+2%|▏         | 116/5625 [03:34<2:44:44,  1.79s/it]
+2%|▏         | 117/5625 [03:36<2:45:31,  1.80s/it]
+2%|▏         | 118/5625 [03:37<2:44:27,  1.79s/it]
+2%|▏         | 119/5625 [03:39<2:41:34,  1.76s/it]
+2%|▏         | 120/5625 [03:41<2:40:06,  1.74s/it]
+{'loss': 0.0285, 'grad_norm': 0.3257717490196228, 'learning_rate': 2.113676731793961e-05, 'epoch': 0.06}
+2%|▏         | 120/5625 [03:41<2:40:06,  1.74s/it]
+2%|▏         | 121/5625 [03:43<2:39:36,  1.74s/it]
+2%|▏         | 122/5625 [03:44<2:39:14,  1.74s/it]
+2%|▏         | 123/5625 [03:46<2:36:34,  1.71s/it]
+2%|▏         | 124/5625 [03:48<2:36:13,  1.70s/it]
+2%|▏         | 125/5625 [03:50<2:42:54,  1.78s/it]
+2%|▏         | 126/5625 [03:51<2:38:14,  1.73s/it]
+2%|▏         | 127/5625 [03:53<2:36:59,  1.71s/it]
+2%|▏         | 128/5625 [03:55<2:36:39,  1.71s/it]
+2%|▏         | 129/5625 [03:56<2:37:14,  1.72s/it]
+2%|▏         | 130/5625 [03:58<2:34:57,  1.69s/it]
+{'loss': 0.0264, 'grad_norm': 0.2543811798095703, 'learning_rate': 2.291296625222025e-05, 'epoch': 0.07}
+2%|▏         | 130/5625 [03:58<2:34:57,  1.69s/it]
+2%|▏         | 131/5625 [04:00<2:32:10,  1.66s/it]
+2%|▏         | 132/5625 [04:01<2:30:39,  1.65s/it]
+2%|▏         | 133/5625 [04:03<2:29:39,  1.63s/it]
+2%|▏         | 134/5625 [04:05<2:37:01,  1.72s/it]
+2%|▏         | 135/5625 [04:06<2:33:38,  1.68s/it]
+2%|▏         | 136/5625 [04:08<2:32:37,  1.67s/it]
+2%|▏         | 137/5625 [04:10<2:31:27,  1.66s/it]
+2%|▏         | 138/5625 [04:11<2:31:06,  1.65s/it]
+2%|▏         | 139/5625 [04:13<2:30:09,  1.64s/it]
+2%|▏         | 140/5625 [04:15<2:33:14,  1.68s/it]
+{'loss': 0.0235, 'grad_norm': 0.32039159536361694, 'learning_rate': 2.4689165186500888e-05, 'epoch': 0.07}
+2%|▏         | 140/5625 [04:15<2:33:14,  1.68s/it]
+3%|▎         | 141/5625 [04:16<2:40:29,  1.76s/it]
+3%|▎         | 142/5625 [04:18<2:40:53,  1.76s/it]
+3%|▎         | 143/5625 [04:20<2:35:17,  1.70s/it]
+3%|▎         | 144/5625 [04:21<2:33:07,  1.68s/it]
+3%|▎         | 145/5625 [04:24<2:46:15,  1.82s/it]
+3%|▎         | 146/5625 [04:25<2:38:11,  1.73s/it]
+3%|▎         | 147/5625 [04:27<2:41:24,  1.77s/it]
+3%|▎         | 148/5625 [04:29<2:35:51,  1.71s/it]
+3%|▎         | 149/5625 [04:30<2:36:04,  1.71s/it]
+3%|▎         | 150/5625 [04:32<2:31:22,  1.66s/it]
+{'loss': 0.0261, 'grad_norm': 0.46979033946990967, 'learning_rate': 2.646536412078153e-05, 'epoch': 0.08}
+3%|▎         | 150/5625 [04:32<2:31:22,  1.66s/it]
+3%|▎         | 151/5625 [04:33<2:30:06,  1.65s/it]
+3%|▎         | 152/5625 [04:35<2:32:02,  1.67s/it]
+3%|▎         | 153/5625 [04:37<2:31:57,  1.67s/it]
+3%|▎         | 154/5625 [04:39<2:34:05,  1.69s/it]
+3%|▎         | 155/5625 [04:40<2:29:07,  1.64s/it]
+3%|▎         | 156/5625 [04:42<2:33:58,  1.69s/it]
+3%|▎         | 157/5625 [04:44<2:33:04,  1.68s/it]
+3%|▎         | 158/5625 [04:45<2:29:29,  1.64s/it]
+3%|▎         | 159/5625 [04:47<2:32:46,  1.68s/it]
+3%|▎         | 160/5625 [04:49<2:34:40,  1.70s/it]
+{'loss': 0.0262, 'grad_norm': 0.25292277336120605, 'learning_rate': 2.824156305506217e-05, 'epoch': 0.09}
+3%|▎         | 160/5625 [04:49<2:34:40,  1.70s/it]
+3%|▎         | 161/5625 [04:50<2:41:04,  1.77s/it]
+3%|▎         | 162/5625 [04:52<2:39:06,  1.75s/it]
+3%|▎         | 163/5625 [04:54<2:33:11,  1.68s/it]
+3%|▎         | 164/5625 [04:55<2:34:32,  1.70s/it]
+3%|▎         | 165/5625 [04:57<2:31:18,  1.66s/it]
+3%|▎         | 166/5625 [04:59<2:30:50,  1.66s/it]
+3%|▎         | 167/5625 [05:00<2:28:58,  1.64s/it]
+3%|▎         | 168/5625 [05:02<2:36:05,  1.72s/it]
+3%|▎         | 169/5625 [05:04<2:31:58,  1.67s/it]
+3%|▎         | 170/5625 [05:05<2:32:02,  1.67s/it]
+{'loss': 0.0249, 'grad_norm': 0.28517359495162964, 'learning_rate': 3.0017761989342806e-05, 'epoch': 0.09}
+3%|▎         | 170/5625 [05:05<2:32:02,  1.67s/it]
+3%|▎         | 171/5625 [05:07<2:32:55,  1.68s/it]
+3%|▎         | 172/5625 [05:09<2:32:04,  1.67s/it]
+3%|▎         | 173/5625 [05:10<2:33:12,  1.69s/it]
+3%|▎         | 174/5625 [05:12<2:35:10,  1.71s/it]
+3%|▎         | 175/5625 [05:14<2:34:55,  1.71s/it]
+3%|▎         | 176/5625 [05:15<2:29:11,  1.64s/it]
+3%|▎         | 177/5625 [05:17<2:25:46,  1.61s/it]
+3%|▎         | 178/5625 [05:19<2:28:41,  1.64s/it]
+3%|▎         | 179/5625 [05:20<2:27:16,  1.62s/it]
+3%|▎         | 180/5625 [05:22<2:29:58,  1.65s/it]
+{'loss': 0.0219, 'grad_norm': 0.27135953307151794, 'learning_rate': 3.1793960923623447e-05, 'epoch': 0.1}
+3%|▎         | 180/5625 [05:22<2:29:58,  1.65s/it]
+3%|▎         | 181/5625 [05:24<2:33:03,  1.69s/it]
+3%|▎         | 182/5625 [05:26<2:46:25,  1.83s/it]
+3%|▎         | 183/5625 [05:28<2:45:16,  1.82s/it]
+3%|▎         | 184/5625 [05:30<2:54:04,  1.92s/it]
+3%|▎         | 185/5625 [05:31<2:45:15,  1.82s/it]
+3%|▎         | 186/5625 [05:33<2:39:25,  1.76s/it]
+3%|▎         | 187/5625 [05:35<2:38:36,  1.75s/it]
+3%|▎         | 188/5625 [05:37<2:40:32,  1.77s/it]
+3%|▎         | 189/5625 [05:38<2:40:00,  1.77s/it]
+3%|▎         | 190/5625 [05:40<2:44:48,  1.82s/it]
+{'loss': 0.023, 'grad_norm': 0.34291666746139526, 'learning_rate': 3.357015985790409e-05, 'epoch': 0.1}
+3%|▎         | 190/5625 [05:40<2:44:48,  1.82s/it]
+3%|▎         | 191/5625 [05:42<2:40:08,  1.77s/it]
+3%|▎         | 192/5625 [05:44<2:43:07,  1.80s/it]
+3%|▎         | 193/5625 [05:46<2:47:24,  1.85s/it]
+3%|▎         | 194/5625 [05:48<2:51:19,  1.89s/it]
+3%|▎         | 195/5625 [05:49<2:43:46,  1.81s/it]
+3%|▎         | 196/5625 [05:51<2:40:01,  1.77s/it]
+4%|▎         | 197/5625 [05:53<2:36:57,  1.73s/it]
+4%|▎         | 198/5625 [05:55<2:42:38,  1.80s/it]
+4%|▎         | 199/5625 [05:56<2:38:05,  1.75s/it]
+4%|▎         | 200/5625 [05:58<2:36:37,  1.73s/it]
+{'loss': 0.0252, 'grad_norm': 0.31100937724113464, 'learning_rate': 3.534635879218473e-05, 'epoch': 0.11}
+4%|▎         | 200/5625 [05:58<2:36:37,  1.73s/it]
+4%|▎         | 201/5625 [06:00<2:35:36,  1.72s/it]
+4%|▎         | 202/5625 [06:01<2:32:54,  1.69s/it]
+4%|▎         | 203/5625 [06:03<2:34:07,  1.71s/it]
+4%|▎         | 204/5625 [06:05<2:28:37,  1.64s/it]
+4%|▎         | 205/5625 [06:06<2:29:09,  1.65s/it]
+4%|▎         | 206/5625 [06:08<2:37:49,  1.75s/it]
+4%|▎         | 207/5625 [06:10<2:36:04,  1.73s/it]
+4%|▎         | 208/5625 [06:12<2:33:30,  1.70s/it]
+4%|▎         | 209/5625 [06:13<2:36:46,  1.74s/it]
+4%|▎         | 210/5625 [06:15<2:37:10,  1.74s/it]
+{'loss': 0.0214, 'grad_norm': 0.2114659994840622, 'learning_rate': 3.712255772646537e-05, 'epoch': 0.11}
+4%|▎         | 210/5625 [06:15<2:37:10,  1.74s/it]
+4%|▍         | 211/5625 [06:17<2:34:27,  1.71s/it]
+4%|▍         | 212/5625 [06:18<2:34:17,  1.71s/it]
+4%|▍         | 213/5625 [06:20<2:31:36,  1.68s/it]
+4%|▍         | 214/5625 [06:22<2:29:30,  1.66s/it]
+4%|▍         | 215/5625 [06:23<2:30:44,  1.67s/it]
+4%|▍         | 216/5625 [06:25<2:32:03,  1.69s/it]
+4%|▍         | 217/5625 [06:27<2:34:48,  1.72s/it]
+4%|▍         | 218/5625 [06:29<2:38:55,  1.76s/it]
+4%|▍         | 219/5625 [06:30<2:37:27,  1.75s/it]
+4%|▍         | 220/5625 [06:32<2:33:38,  1.71s/it]
+{'loss': 0.0196, 'grad_norm': 0.16802982985973358, 'learning_rate': 3.889875666074601e-05, 'epoch': 0.12}
+4%|▍         | 220/5625 [06:32<2:33:38,  1.71s/it]
+4%|▍         | 221/5625 [06:34<2:35:41,  1.73s/it]
+4%|▍         | 222/5625 [06:35<2:32:37,  1.69s/it]
+4%|▍         | 223/5625 [06:37<2:28:24,  1.65s/it]
+4%|▍         | 224/5625 [06:39<2:34:27,  1.72s/it]
+4%|▍         | 225/5625 [06:41<2:34:12,  1.71s/it]
+4%|▍         | 226/5625 [06:42<2:29:48,  1.66s/it]
+4%|▍         | 227/5625 [06:44<2:37:08,  1.75s/it]
+4%|▍         | 228/5625 [06:46<2:34:22,  1.72s/it]
+4%|▍         | 229/5625 [06:48<2:40:24,  1.78s/it]
+4%|▍         | 230/5625 [06:49<2:41:03,  1.79s/it]
+{'loss': 0.0231, 'grad_norm': 0.2085520476102829, 'learning_rate': 4.067495559502664e-05, 'epoch': 0.12}
+4%|▍         | 230/5625 [06:49<2:41:03,  1.79s/it]
+4%|▍         | 231/5625 [06:51<2:45:03,  1.84s/it]
+4%|▍         | 232/5625 [06:53<2:46:25,  1.85s/it]
+4%|▍         | 233/5625 [06:55<2:38:32,  1.76s/it]
+4%|▍         | 234/5625 [06:57<2:44:54,  1.84s/it]
+4%|▍         | 235/5625 [06:59<2:41:38,  1.80s/it]
+4%|▍         | 236/5625 [07:00<2:31:49,  1.69s/it]
+4%|▍         | 237/5625 [07:02<2:28:01,  1.65s/it]
+4%|▍         | 238/5625 [07:03<2:26:33,  1.63s/it]
+4%|▍         | 239/5625 [07:05<2:22:49,  1.59s/it]
+4%|▍         | 240/5625 [07:06<2:26:03,  1.63s/it]
+{'loss': 0.0241, 'grad_norm': 0.07109370827674866, 'learning_rate': 4.245115452930728e-05, 'epoch': 0.13}
+4%|▍         | 240/5625 [07:06<2:26:03,  1.63s/it]
+4%|▍         | 241/5625 [07:08<2:26:05,  1.63s/it]
+4%|▍         | 242/5625 [07:10<2:29:49,  1.67s/it]
+4%|▍         | 243/5625 [07:12<2:38:09,  1.76s/it]
+4%|▍         | 244/5625 [07:13<2:34:16,  1.72s/it]
+4%|▍         | 245/5625 [07:15<2:29:58,  1.67s/it]
+4%|▍         | 246/5625 [07:17<2:28:38,  1.66s/it]
+4%|▍         | 247/5625 [07:18<2:27:34,  1.65s/it]
+4%|▍         | 248/5625 [07:20<2:33:37,  1.71s/it]
+4%|▍         | 249/5625 [07:22<2:31:12,  1.69s/it]
+4%|▍         | 250/5625 [07:23<2:29:34,  1.67s/it]
+{'loss': 0.0205, 'grad_norm': 0.20802131295204163, 'learning_rate': 4.422735346358792e-05, 'epoch': 0.13}
+4%|▍         | 250/5625 [07:23<2:29:34,  1.67s/it]
+4%|▍         | 251/5625 [07:25<2:30:38,  1.68s/it]
+4%|▍         | 252/5625 [07:27<2:34:22,  1.72s/it]
+4%|▍         | 253/5625 [07:29<2:33:55,  1.72s/it]
+5%|▍         | 254/5625 [07:30<2:39:13,  1.78s/it]
+5%|▍         | 255/5625 [07:32<2:39:35,  1.78s/it]
+5%|▍         | 256/5625 [07:34<2:39:00,  1.78s/it]
+5%|▍         | 257/5625 [07:36<2:36:01,  1.74s/it]
+5%|▍         | 258/5625 [07:38<2:37:51,  1.76s/it]
+5%|▍         | 259/5625 [07:39<2:33:25,  1.72s/it]
+5%|▍         | 260/5625 [07:41<2:44:29,  1.84s/it]
+{'loss': 0.0198, 'grad_norm': 0.2663576006889343, 'learning_rate': 4.600355239786856e-05, 'epoch': 0.14}
+5%|▍         | 260/5625 [07:41<2:44:29,  1.84s/it]
+5%|▍         | 261/5625 [07:43<2:48:03,  1.88s/it]
+5%|▍         | 262/5625 [07:45<2:47:25,  1.87s/it]
+5%|▍         | 263/5625 [07:47<2:44:22,  1.84s/it]
+5%|▍         | 264/5625 [07:49<2:43:21,  1.83s/it]
+5%|▍         | 265/5625 [07:51<2:47:11,  1.87s/it]
+5%|▍         | 266/5625 [07:52<2:46:41,  1.87s/it]
+5%|▍         | 267/5625 [07:54<2:45:19,  1.85s/it]
+5%|▍         | 268/5625 [07:56<2:41:11,  1.81s/it]
+5%|▍         | 269/5625 [07:58<2:34:22,  1.73s/it]
+5%|▍         | 270/5625 [08:00<2:43:48,  1.84s/it]
+{'loss': 0.0235, 'grad_norm': 0.21842581033706665, 'learning_rate': 4.7779751332149204e-05, 'epoch': 0.14}
+5%|▍         | 270/5625 [08:00<2:43:48,  1.84s/it]
+5%|▍         | 271/5625 [08:01<2:41:13,  1.81s/it]
+5%|▍         | 272/5625 [08:03<2:45:29,  1.85s/it]
+5%|▍         | 273/5625 [08:05<2:41:18,  1.81s/it]
+5%|▍         | 274/5625 [08:07<2:36:41,  1.76s/it]
+5%|▍         | 275/5625 [08:09<2:39:56,  1.79s/it]
+5%|▍         | 276/5625 [08:10<2:42:46,  1.83s/it]
+5%|▍         | 277/5625 [08:12<2:35:17,  1.74s/it]
+5%|▍         | 278/5625 [08:14<2:32:47,  1.71s/it]
+5%|▍         | 279/5625 [08:15<2:30:42,  1.69s/it]
+5%|▍         | 280/5625 [08:17<2:32:47,  1.72s/it]
+{'loss': 0.0206, 'grad_norm': 0.1122104749083519, 'learning_rate': 4.955595026642984e-05, 'epoch': 0.15}
+5%|▍         | 280/5625 [08:17<2:32:47,  1.72s/it]
+5%|▍         | 281/5625 [08:19<2:31:03,  1.70s/it]
+5%|▌         | 282/5625 [08:20<2:26:28,  1.64s/it]
+5%|▌         | 283/5625 [08:22<2:35:36,  1.75s/it]
+5%|▌         | 284/5625 [08:24<2:38:56,  1.79s/it]
+5%|▌         | 285/5625 [08:26<2:35:41,  1.75s/it]
+5%|▌         | 286/5625 [08:27<2:31:26,  1.70s/it]
+5%|▌         | 287/5625 [08:29<2:35:43,  1.75s/it]
+5%|▌         | 288/5625 [08:31<2:35:00,  1.74s/it]
+5%|▌         | 289/5625 [08:33<2:33:23,  1.72s/it]
+5%|▌         | 290/5625 [08:34<2:29:48,  1.68s/it]
+{'loss': 0.0165, 'grad_norm': 0.17694813013076782, 'learning_rate': 5.133214920071048e-05, 'epoch': 0.15}
+5%|▌         | 290/5625 [08:34<2:29:48,  1.68s/it]
+5%|▌         | 291/5625 [08:36<2:32:20,  1.71s/it]
+5%|▌         | 292/5625 [08:38<2:30:59,  1.70s/it]
+5%|▌         | 293/5625 [08:39<2:33:55,  1.73s/it]
+5%|▌         | 294/5625 [08:41<2:31:35,  1.71s/it]
+5%|▌         | 295/5625 [08:43<2:32:32,  1.72s/it]
+5%|▌         | 296/5625 [08:45<2:37:52,  1.78s/it]
+5%|▌         | 297/5625 [08:46<2:36:33,  1.76s/it]
+5%|▌         | 298/5625 [08:48<2:33:52,  1.73s/it]
+5%|▌         | 299/5625 [08:50<2:34:59,  1.75s/it]
+5%|▌         | 300/5625 [08:51<2:29:14,  1.68s/it]
+{'loss': 0.0208, 'grad_norm': 0.07471828162670135, 'learning_rate': 5.3108348134991125e-05, 'epoch': 0.16}
+5%|▌         | 300/5625 [08:51<2:29:14,  1.68s/it]
+5%|▌         | 301/5625 [08:53<2:30:07,  1.69s/it]
+5%|▌         | 302/5625 [08:55<2:29:06,  1.68s/it]
+5%|▌         | 303/5625 [08:56<2:26:57,  1.66s/it]
+5%|▌         | 304/5625 [08:58<2:32:36,  1.72s/it]
+5%|▌         | 305/5625 [09:00<2:33:25,  1.73s/it]
+5%|▌         | 306/5625 [09:02<2:29:58,  1.69s/it]
+5%|▌         | 307/5625 [09:03<2:31:50,  1.71s/it]
+5%|▌         | 308/5625 [09:05<2:31:29,  1.71s/it]
+5%|▌         | 309/5625 [09:07<2:32:14,  1.72s/it]
+6%|▌         | 310/5625 [09:09<2:31:11,  1.71s/it]
+{'loss': 0.0172, 'grad_norm': 0.1052970364689827, 'learning_rate': 5.4884547069271765e-05, 'epoch': 0.17}
+6%|▌         | 310/5625 [09:09<2:31:11,  1.71s/it]
+6%|▌         | 311/5625 [09:10<2:29:33,  1.69s/it]
+6%|▌         | 312/5625 [09:12<2:31:15,  1.71s/it]
+6%|▌         | 313/5625 [09:14<2:30:00,  1.69s/it]
+6%|▌         | 314/5625 [09:15<2:30:02,  1.70s/it]
+6%|▌         | 315/5625 [09:17<2:29:44,  1.69s/it]
+6%|▌         | 316/5625 [09:19<2:31:30,  1.71s/it]
+6%|▌         | 317/5625 [09:20<2:26:46,  1.66s/it]
+6%|▌         | 318/5625 [09:22<2:28:04,  1.67s/it]
+6%|▌         | 319/5625 [09:24<2:37:04,  1.78s/it]
+6%|▌         | 320/5625 [09:26<2:30:59,  1.71s/it]
+{'loss': 0.0199, 'grad_norm': 0.1587778478860855, 'learning_rate': 5.66607460035524e-05, 'epoch': 0.17}
+6%|▌         | 320/5625 [09:26<2:30:59,  1.71s/it]
+6%|▌         | 321/5625 [09:27<2:30:20,  1.70s/it]
+6%|▌         | 322/5625 [09:29<2:31:12,  1.71s/it]
+6%|▌         | 323/5625 [09:31<2:27:54,  1.67s/it]
+6%|▌         | 324/5625 [09:32<2:26:27,  1.66s/it]
+6%|▌         | 325/5625 [09:34<2:32:24,  1.73s/it]
+6%|▌         | 326/5625 [09:36<2:26:18,  1.66s/it]
+6%|▌         | 327/5625 [09:37<2:23:12,  1.62s/it]
+6%|▌         | 328/5625 [09:39<2:29:20,  1.69s/it]
+6%|▌         | 329/5625 [09:41<2:31:23,  1.72s/it]
+6%|▌         | 330/5625 [09:42<2:30:43,  1.71s/it]
+{'loss': 0.0191, 'grad_norm': 0.1308910995721817, 'learning_rate': 5.843694493783304e-05, 'epoch': 0.18}
+6%|▌         | 330/5625 [09:42<2:30:43,  1.71s/it]
+6%|▌         | 331/5625 [09:44<2:32:35,  1.73s/it]
+6%|▌         | 332/5625 [09:46<2:37:08,  1.78s/it]
+6%|▌         | 333/5625 [09:48<2:40:40,  1.82s/it]
+6%|▌         | 334/5625 [09:50<2:36:35,  1.78s/it]
+6%|▌         | 335/5625 [09:51<2:35:16,  1.76s/it]
+6%|▌         | 336/5625 [09:53<2:34:46,  1.76s/it]
+6%|▌         | 337/5625 [09:55<2:37:24,  1.79s/it]
+6%|▌         | 338/5625 [09:57<2:31:38,  1.72s/it]
+6%|▌         | 339/5625 [09:58<2:36:21,  1.77s/it]
+6%|▌         | 340/5625 [10:00<2:36:14,  1.77s/it]
+{'loss': 0.0221, 'grad_norm': 0.1840902715921402, 'learning_rate': 6.021314387211367e-05, 'epoch': 0.18}
+6%|▌         | 340/5625 [10:00<2:36:14,  1.77s/it]
+6%|▌         | 341/5625 [10:02<2:31:53,  1.72s/it]
+6%|▌         | 342/5625 [10:04<2:30:18,  1.71s/it]
+6%|▌         | 343/5625 [10:05<2:29:05,  1.69s/it]
+6%|▌         | 344/5625 [10:07<2:27:07,  1.67s/it]
+6%|▌         | 345/5625 [10:09<2:27:57,  1.68s/it]
+6%|▌         | 346/5625 [10:11<2:40:38,  1.83s/it]
+6%|▌         | 347/5625 [10:12<2:36:07,  1.77s/it]
+6%|▌         | 348/5625 [10:14<2:32:59,  1.74s/it]
+6%|▌         | 349/5625 [10:16<2:29:59,  1.71s/it]
+6%|▌         | 350/5625 [10:18<2:40:04,  1.82s/it]
+{'loss': 0.0203, 'grad_norm': 0.09022124111652374, 'learning_rate': 6.198934280639432e-05, 'epoch': 0.19}
+6%|▌         | 350/5625 [10:18<2:40:04,  1.82s/it]
+6%|▌         | 351/5625 [10:19<2:34:23,  1.76s/it]
+6%|▋         | 352/5625 [10:21<2:37:36,  1.79s/it]
+6%|▋         | 353/5625 [10:23<2:35:39,  1.77s/it]
+6%|▋         | 354/5625 [10:25<2:41:10,  1.83s/it]
+6%|▋         | 355/5625 [10:27<2:40:54,  1.83s/it]
+6%|▋         | 356/5625 [10:28<2:31:55,  1.73s/it]
+6%|▋         | 357/5625 [10:30<2:28:28,  1.69s/it]
+6%|▋         | 358/5625 [10:32<2:34:49,  1.76s/it]
+6%|▋         | 359/5625 [10:33<2:34:42,  1.76s/it]
+6%|▋         | 360/5625 [10:35<2:32:41,  1.74s/it]
+{'loss': 0.0202, 'grad_norm': 0.09248337149620056, 'learning_rate': 6.376554174067497e-05, 'epoch': 0.19}
+6%|▋         | 360/5625 [10:35<2:32:41,  1.74s/it]
+6%|▋         | 361/5625 [10:37<2:32:03,  1.73s/it]
+6%|▋         | 362/5625 [10:39<2:32:56,  1.74s/it]
+6%|▋         | 363/5625 [10:40<2:32:48,  1.74s/it]
+6%|▋         | 364/5625 [10:42<2:30:04,  1.71s/it]
+6%|▋         | 365/5625 [10:44<2:29:35,  1.71s/it]
+7%|▋         | 366/5625 [10:46<2:31:48,  1.73s/it]
+7%|▋         | 367/5625 [10:47<2:32:43,  1.74s/it]
+7%|▋         | 368/5625 [10:49<2:34:01,  1.76s/it]
+7%|▋         | 369/5625 [10:51<2:34:49,  1.77s/it]
+7%|▋         | 370/5625 [10:52<2:29:09,  1.70s/it]
+{'loss': 0.0213, 'grad_norm': 0.15681006014347076, 'learning_rate': 6.55417406749556e-05, 'epoch': 0.2}
+7%|▋         | 370/5625 [10:52<2:29:09,  1.70s/it]
+7%|▋         | 371/5625 [10:54<2:36:00,  1.78s/it]
+7%|▋         | 372/5625 [10:56<2:35:43,  1.78s/it]
+7%|▋         | 373/5625 [10:58<2:37:19,  1.80s/it]
+7%|▋         | 374/5625 [11:00<2:35:34,  1.78s/it]
+7%|▋         | 375/5625 [11:01<2:33:10,  1.75s/it]
+7%|▋         | 376/5625 [11:03<2:28:19,  1.70s/it]
+7%|▋         | 377/5625 [11:05<2:29:20,  1.71s/it]
+7%|▋         | 378/5625 [11:07<2:34:55,  1.77s/it]
+7%|▋         | 379/5625 [11:08<2:32:21,  1.74s/it]
+7%|▋         | 380/5625 [11:10<2:35:24,  1.78s/it]
+{'loss': 0.0186, 'grad_norm': 0.1208493560552597, 'learning_rate': 6.731793960923623e-05, 'epoch': 0.2}
+7%|▋         | 380/5625 [11:10<2:35:24,  1.78s/it]
+7%|▋         | 381/5625 [11:12<2:32:23,  1.74s/it]
+7%|▋         | 382/5625 [11:14<2:30:54,  1.73s/it]
+7%|▋         | 383/5625 [11:16<2:38:16,  1.81s/it]
+7%|▋         | 384/5625 [11:17<2:39:29,  1.83s/it]
+7%|▋         | 385/5625 [11:19<2:45:25,  1.89s/it]
+7%|▋         | 386/5625 [11:21<2:39:38,  1.83s/it]
+7%|▋         | 387/5625 [11:23<2:37:11,  1.80s/it]
+7%|▋         | 388/5625 [11:25<2:40:10,  1.84s/it]
+7%|▋         | 389/5625 [11:27<2:38:06,  1.81s/it]
+7%|▋         | 390/5625 [11:28<2:32:51,  1.75s/it]
+{'loss': 0.0267, 'grad_norm': 0.25219783186912537, 'learning_rate': 6.909413854351687e-05, 'epoch': 0.21}
+7%|▋         | 390/5625 [11:28<2:32:51,  1.75s/it]
+7%|▋         | 391/5625 [11:30<2:32:51,  1.75s/it]
+7%|▋         | 392/5625 [11:31<2:26:26,  1.68s/it]
+7%|▋         | 393/5625 [11:33<2:26:14,  1.68s/it]
+7%|▋         | 394/5625 [11:35<2:27:46,  1.69s/it]
+7%|▋         | 395/5625 [11:36<2:25:00,  1.66s/it]
+7%|▋         | 396/5625 [11:38<2:26:11,  1.68s/it]
+7%|▋         | 397/5625 [11:40<2:31:07,  1.73s/it]
+7%|▋         | 398/5625 [11:42<2:31:38,  1.74s/it]
+7%|▋         | 399/5625 [11:43<2:28:43,  1.71s/it]
+7%|▋         | 400/5625 [11:45<2:25:02,  1.67s/it]
+{'loss': 0.018, 'grad_norm': 0.08657495677471161, 'learning_rate': 7.087033747779752e-05, 'epoch': 0.21}
+7%|▋         | 400/5625 [11:45<2:25:02,  1.67s/it]
+7%|▋         | 401/5625 [11:47<2:31:22,  1.74s/it]
+7%|▋         | 402/5625 [11:49<2:28:52,  1.71s/it]
+7%|▋         | 403/5625 [11:50<2:32:14,  1.75s/it]
+7%|▋         | 404/5625 [11:52<2:30:19,  1.73s/it]
+7%|▋         | 405/5625 [11:54<2:34:32,  1.78s/it]
+7%|▋         | 406/5625 [11:56<2:36:17,  1.80s/it]
+7%|▋         | 407/5625 [11:57<2:29:18,  1.72s/it]
+7%|▋         | 408/5625 [11:59<2:26:08,  1.68s/it]
+7%|▋         | 409/5625 [12:01<2:27:18,  1.69s/it]
+7%|▋         | 410/5625 [12:02<2:26:35,  1.69s/it]
+{'loss': 0.0238, 'grad_norm': 0.21157146990299225, 'learning_rate': 7.264653641207816e-05, 'epoch': 0.22}
+7%|▋         | 410/5625 [12:02<2:26:35,  1.69s/it]
+7%|▋         | 411/5625 [12:04<2:27:25,  1.70s/it]
+7%|▋         | 412/5625 [12:06<2:32:19,  1.75s/it]
+7%|▋         | 413/5625 [12:08<2:28:55,  1.71s/it]
+7%|▋         | 414/5625 [12:09<2:26:33,  1.69s/it]
+7%|▋         | 415/5625 [12:11<2:32:35,  1.76s/it]
+7%|▋         | 416/5625 [12:13<2:34:13,  1.78s/it]
+7%|▋         | 417/5625 [12:15<2:31:12,  1.74s/it]
+7%|▋         | 418/5625 [12:16<2:27:15,  1.70s/it]
+7%|▋         | 419/5625 [12:18<2:27:36,  1.70s/it]
+7%|▋         | 420/5625 [12:20<2:26:44,  1.69s/it]
+{'loss': 0.0214, 'grad_norm': 0.11143267154693604, 'learning_rate': 7.44227353463588e-05, 'epoch': 0.22}
+7%|▋         | 420/5625 [12:20<2:26:44,  1.69s/it]
+7%|▋         | 421/5625 [12:22<2:37:29,  1.82s/it]
+8%|▊         | 422/5625 [12:23<2:34:29,  1.78s/it]
+8%|▊         | 423/5625 [12:25<2:31:54,  1.75s/it]
+8%|▊         | 424/5625 [12:27<2:29:09,  1.72s/it]
+8%|▊         | 425/5625 [12:29<2:33:15,  1.77s/it]
+8%|▊         | 426/5625 [12:30<2:29:25,  1.72s/it]
+8%|▊         | 427/5625 [12:32<2:33:08,  1.77s/it]
+8%|▊         | 428/5625 [12:34<2:29:45,  1.73s/it]
+8%|▊         | 429/5625 [12:36<2:32:51,  1.77s/it]
+8%|▊         | 430/5625 [12:37<2:33:42,  1.78s/it]
+{'loss': 0.0197, 'grad_norm': 0.10373590141534805, 'learning_rate': 7.619893428063943e-05, 'epoch': 0.23}
+8%|▊         | 430/5625 [12:37<2:33:42,  1.78s/it]
+8%|▊         | 431/5625 [12:39<2:30:40,  1.74s/it]
+8%|▊         | 432/5625 [12:41<2:29:09,  1.72s/it]
+8%|▊         | 433/5625 [12:42<2:25:45,  1.68s/it]
+8%|▊         | 434/5625 [12:44<2:26:22,  1.69s/it]
+8%|▊         | 435/5625 [12:46<2:25:00,  1.68s/it]
+8%|▊         | 436/5625 [12:47<2:21:49,  1.64s/it]
+8%|▊         | 437/5625 [12:49<2:23:05,  1.65s/it]
+8%|▊         | 438/5625 [12:51<2:25:44,  1.69s/it]
+8%|▊         | 439/5625 [12:52<2:27:20,  1.70s/it]
+8%|▊         | 440/5625 [12:54<2:23:28,  1.66s/it]
+{'loss': 0.0196, 'grad_norm': 0.09447813779115677, 'learning_rate': 7.797513321492008e-05, 'epoch': 0.23}
+8%|▊         | 440/5625 [12:54<2:23:28,  1.66s/it]
+8%|▊         | 441/5625 [12:56<2:28:50,  1.72s/it]
+8%|▊         | 442/5625 [12:57<2:25:51,  1.69s/it]
+8%|▊         | 443/5625 [12:59<2:33:59,  1.78s/it]
+8%|▊         | 444/5625 [13:01<2:35:11,  1.80s/it]
+8%|▊         | 445/5625 [13:03<2:32:05,  1.76s/it]
+8%|▊         | 446/5625 [13:05<2:30:25,  1.74s/it]
+8%|▊         | 447/5625 [13:06<2:27:52,  1.71s/it]
+8%|▊         | 448/5625 [13:08<2:24:49,  1.68s/it]
+8%|▊         | 449/5625 [13:10<2:26:08,  1.69s/it]
+8%|▊         | 450/5625 [13:11<2:22:03,  1.65s/it]
+{'loss': 0.0195, 'grad_norm': 0.13195151090621948, 'learning_rate': 7.975133214920072e-05, 'epoch': 0.24}
+8%|▊         | 450/5625 [13:11<2:22:03,  1.65s/it]
+8%|▊         | 451/5625 [13:13<2:22:18,  1.65s/it]
+8%|▊         | 452/5625 [13:14<2:22:13,  1.65s/it]
+8%|▊         | 453/5625 [13:16<2:23:59,  1.67s/it]
+8%|▊         | 454/5625 [13:18<2:21:15,  1.64s/it]
+8%|▊         | 455/5625 [13:19<2:23:24,  1.66s/it]
+8%|▊         | 456/5625 [13:21<2:23:07,  1.66s/it]
+8%|▊         | 457/5625 [13:23<2:26:06,  1.70s/it]
+8%|▊         | 458/5625 [13:25<2:28:54,  1.73s/it]
+8%|▊         | 459/5625 [13:26<2:27:53,  1.72s/it]
+8%|▊         | 460/5625 [13:28<2:32:15,  1.77s/it]
+{'loss': 0.0176, 'grad_norm': 0.10178880393505096, 'learning_rate': 8.152753108348136e-05, 'epoch': 0.25}
+8%|▊         | 460/5625 [13:28<2:32:15,  1.77s/it]
+8%|▊         | 461/5625 [13:30<2:32:00,  1.77s/it]
+8%|▊         | 462/5625 [13:32<2:31:09,  1.76s/it]
+8%|▊         | 463/5625 [13:33<2:30:40,  1.75s/it]
+8%|▊         | 464/5625 [13:35<2:28:20,  1.72s/it]
+8%|▊         | 465/5625 [13:37<2:25:07,  1.69s/it]
+8%|▊         | 466/5625 [13:38<2:22:41,  1.66s/it]
+8%|▊         | 467/5625 [13:40<2:22:34,  1.66s/it]
+8%|▊         | 468/5625 [13:42<2:26:37,  1.71s/it]
+8%|▊         | 469/5625 [13:43<2:24:22,  1.68s/it]
+8%|▊         | 470/5625 [13:45<2:22:47,  1.66s/it]
+{'loss': 0.0204, 'grad_norm': 0.17058637738227844, 'learning_rate': 8.330373001776199e-05, 'epoch': 0.25}
+8%|▊         | 470/5625 [13:45<2:22:47,  1.66s/it]
+8%|▊         | 471/5625 [13:47<2:20:03,  1.63s/it]
+8%|▊         | 472/5625 [13:48<2:23:37,  1.67s/it]
+8%|▊         | 473/5625 [13:50<2:28:17,  1.73s/it]
+8%|▊         | 474/5625 [13:52<2:24:02,  1.68s/it]
+8%|▊         | 475/5625 [13:53<2:23:57,  1.68s/it]
+8%|▊         | 476/5625 [13:55<2:30:57,  1.76s/it]
+8%|▊         | 477/5625 [13:57<2:34:37,  1.80s/it]
+8%|▊         | 478/5625 [13:59<2:33:56,  1.79s/it]
+9%|▊         | 479/5625 [14:01<2:34:38,  1.80s/it]
+9%|▊         | 480/5625 [14:03<2:30:29,  1.75s/it]
+{'loss': 0.0239, 'grad_norm': 0.148695170879364, 'learning_rate': 8.507992895204263e-05, 'epoch': 0.26}
+9%|▊         | 480/5625 [14:03<2:30:29,  1.75s/it]
+9%|▊         | 481/5625 [14:04<2:33:09,  1.79s/it]
+9%|▊         | 482/5625 [14:06<2:28:47,  1.74s/it]
+9%|▊         | 483/5625 [14:08<2:27:41,  1.72s/it]
+9%|▊         | 484/5625 [14:10<2:30:18,  1.75s/it]
+9%|▊         | 485/5625 [14:11<2:27:56,  1.73s/it]
+9%|▊         | 486/5625 [14:13<2:27:27,  1.72s/it]
+9%|▊         | 487/5625 [14:15<2:30:20,  1.76s/it]
+9%|▊         | 488/5625 [14:16<2:29:02,  1.74s/it]
+9%|▊         | 489/5625 [14:18<2:26:58,  1.72s/it]
+9%|▊         | 490/5625 [14:20<2:27:06,  1.72s/it]
+{'loss': 0.0183, 'grad_norm': 0.09098551422357559, 'learning_rate': 8.685612788632327e-05, 'epoch': 0.26}
+9%|▊         | 490/5625 [14:20<2:27:06,  1.72s/it]
+9%|▊         | 491/5625 [14:22<2:28:50,  1.74s/it]
+9%|▊         | 492/5625 [14:23<2:27:50,  1.73s/it]
+9%|▉         | 493/5625 [14:25<2:23:26,  1.68s/it]
+9%|▉         | 494/5625 [14:27<2:25:48,  1.70s/it]
+9%|▉         | 495/5625 [14:28<2:27:20,  1.72s/it]
+9%|▉         | 496/5625 [14:30<2:24:46,  1.69s/it]
+9%|▉         | 497/5625 [14:32<2:25:24,  1.70s/it]
+9%|▉         | 498/5625 [14:33<2:22:44,  1.67s/it]
+9%|▉         | 499/5625 [14:35<2:28:34,  1.74s/it]
+9%|▉         | 500/5625 [14:37<2:31:53,  1.78s/it]
+{'loss': 0.0178, 'grad_norm': 0.12069842219352722, 'learning_rate': 8.863232682060392e-05, 'epoch': 0.27}
+9%|▉         | 500/5625 [14:37<2:31:53,  1.78s/it]
+9%|▉         | 501/5625 [14:39<2:32:00,  1.78s/it]
+9%|▉         | 502/5625 [14:41<2:28:30,  1.74s/it]
+9%|▉         | 503/5625 [14:42<2:30:34,  1.76s/it]
+9%|▉         | 504/5625 [14:44<2:29:15,  1.75s/it]
+9%|▉         | 505/5625 [14:46<2:28:58,  1.75s/it]
+9%|▉         | 506/5625 [14:48<2:30:15,  1.76s/it]
+9%|▉         | 507/5625 [14:49<2:30:14,  1.76s/it]
+9%|▉         | 508/5625 [14:51<2:31:41,  1.78s/it]
+9%|▉         | 509/5625 [14:53<2:29:42,  1.76s/it]
+9%|▉         | 510/5625 [14:55<2:28:45,  1.74s/it]
+{'loss': 0.0158, 'grad_norm': 0.075709767639637, 'learning_rate': 9.040852575488455e-05, 'epoch': 0.27}
+9%|▉         | 510/5625 [14:55<2:28:45,  1.74s/it]
+9%|▉         | 511/5625 [14:57<2:36:07,  1.83s/it]
+9%|▉         | 512/5625 [14:58<2:34:00,  1.81s/it]
+9%|▉         | 513/5625 [15:00<2:27:09,  1.73s/it]
+9%|▉         | 514/5625 [15:02<2:30:45,  1.77s/it]
+9%|▉         | 515/5625 [15:04<2:31:20,  1.78s/it]
+9%|▉         | 516/5625 [15:05<2:25:49,  1.71s/it]
+9%|▉         | 517/5625 [15:07<2:22:59,  1.68s/it]
+9%|▉         | 518/5625 [15:08<2:23:40,  1.69s/it]
+9%|▉         | 519/5625 [15:10<2:23:09,  1.68s/it]
+9%|▉         | 520/5625 [15:12<2:28:58,  1.75s/it]
+{'loss': 0.0179, 'grad_norm': 0.14106105268001556, 'learning_rate': 9.218472468916519e-05, 'epoch': 0.28}
+9%|▉         | 520/5625 [15:12<2:28:58,  1.75s/it]
+9%|▉         | 521/5625 [15:14<2:29:29,  1.76s/it]
+9%|▉         | 522/5625 [15:16<2:27:10,  1.73s/it]
+9%|▉         | 523/5625 [15:17<2:27:42,  1.74s/it]
+9%|▉         | 524/5625 [15:19<2:23:42,  1.69s/it]
+9%|▉         | 525/5625 [15:21<2:26:51,  1.73s/it]
+9%|▉         | 526/5625 [15:22<2:26:43,  1.73s/it]
+9%|▉         | 527/5625 [15:24<2:26:17,  1.72s/it]
+9%|▉         | 528/5625 [15:26<2:25:50,  1.72s/it]
+9%|▉         | 529/5625 [15:27<2:20:19,  1.65s/it]
+9%|▉         | 530/5625 [15:29<2:20:55,  1.66s/it]
+{'loss': 0.0179, 'grad_norm': 0.15396030247211456, 'learning_rate': 9.396092362344583e-05, 'epoch': 0.28}
+9%|▉         | 530/5625 [15:29<2:20:55,  1.66s/it]
+9%|▉         | 531/5625 [15:31<2:18:35,  1.63s/it]
+9%|▉         | 532/5625 [15:32<2:21:07,  1.66s/it]
+9%|▉         | 533/5625 [15:34<2:22:12,  1.68s/it]
+9%|▉         | 534/5625 [15:36<2:20:41,  1.66s/it]
+10%|▉         | 535/5625 [15:37<2:19:23,  1.64s/it]
+10%|▉         | 536/5625 [15:39<2:19:49,  1.65s/it]
+10%|▉         | 537/5625 [15:41<2:21:11,  1.67s/it]
+10%|▉         | 538/5625 [15:42<2:20:20,  1.66s/it]
+10%|▉         | 539/5625 [15:44<2:26:14,  1.73s/it]
+10%|▉         | 540/5625 [15:46<2:20:44,  1.66s/it]
+{'loss': 0.0192, 'grad_norm': 0.14273610711097717, 'learning_rate': 9.573712255772647e-05, 'epoch': 0.29}
+10%|▉         | 540/5625 [15:46<2:20:44,  1.66s/it]
+10%|▉         | 541/5625 [15:47<2:18:55,  1.64s/it]
+10%|▉         | 542/5625 [15:49<2:20:16,  1.66s/it]
+10%|▉         | 543/5625 [15:51<2:19:33,  1.65s/it]
+10%|▉         | 544/5625 [15:52<2:19:31,  1.65s/it]
+10%|▉         | 545/5625 [15:54<2:23:43,  1.70s/it]
+10%|▉         | 546/5625 [15:56<2:23:30,  1.70s/it]
+10%|▉         | 547/5625 [15:57<2:25:49,  1.72s/it]
+10%|▉         | 548/5625 [15:59<2:21:54,  1.68s/it]
+10%|▉         | 549/5625 [16:01<2:26:30,  1.73s/it]
+10%|▉         | 550/5625 [16:03<2:32:40,  1.81s/it]
+{'loss': 0.0199, 'grad_norm': 0.12068958580493927, 'learning_rate': 9.751332149200711e-05, 'epoch': 0.29}
+10%|▉         | 550/5625 [16:03<2:32:40,  1.81s/it]
+10%|▉         | 551/5625 [16:05<2:29:51,  1.77s/it]
+10%|▉         | 552/5625 [16:06<2:28:30,  1.76s/it]
+10%|▉         | 553/5625 [16:08<2:27:11,  1.74s/it]
+10%|▉         | 554/5625 [16:10<2:27:30,  1.75s/it]
+10%|▉         | 555/5625 [16:12<2:30:50,  1.79s/it]
+10%|▉         | 556/5625 [16:14<2:34:57,  1.83s/it]
+10%|▉         | 557/5625 [16:15<2:30:07,  1.78s/it]
+10%|▉         | 558/5625 [16:17<2:31:52,  1.80s/it]
+10%|▉         | 559/5625 [16:19<2:27:59,  1.75s/it]
+10%|▉         | 560/5625 [16:20<2:25:25,  1.72s/it]
+{'loss': 0.0159, 'grad_norm': 0.06667742878198624, 'learning_rate': 9.928952042628775e-05, 'epoch': 0.3}
+10%|▉         | 560/5625 [16:20<2:25:25,  1.72s/it]
+10%|▉         | 561/5625 [16:22<2:25:22,  1.72s/it]
+10%|▉         | 562/5625 [16:24<2:24:30,  1.71s/it]
+10%|█         | 563/5625 [16:26<2:25:57,  1.73s/it]
+10%|█         | 564/5625 [16:27<2:26:33,  1.74s/it]
+10%|█         | 565/5625 [16:29<2:26:25,  1.74s/it]
+10%|█         | 566/5625 [16:31<2:22:31,  1.69s/it]
+10%|█         | 567/5625 [16:33<2:34:33,  1.83s/it]
+10%|█         | 568/5625 [16:34<2:27:58,  1.76s/it]
+10%|█         | 569/5625 [16:36<2:25:43,  1.73s/it]
+10%|█         | 570/5625 [16:38<2:23:04,  1.70s/it]
+{'loss': 0.0176, 'grad_norm': 0.12595829367637634, 'learning_rate': 9.999965334499786e-05, 'epoch': 0.3}
+10%|█         | 570/5625 [16:38<2:23:04,  1.70s/it]
+10%|█         | 571/5625 [16:39<2:25:14,  1.72s/it]
+10%|█         | 572/5625 [16:41<2:20:40,  1.67s/it]
+10%|█         | 573/5625 [16:43<2:19:53,  1.66s/it]
+10%|█         | 574/5625 [16:44<2:23:11,  1.70s/it]
+10%|█         | 575/5625 [16:46<2:26:23,  1.74s/it]
+10%|█         | 576/5625 [16:48<2:27:25,  1.75s/it]
+10%|█         | 577/5625 [16:50<2:37:14,  1.87s/it]
+10%|█         | 578/5625 [16:52<2:31:50,  1.81s/it]
+10%|█         | 579/5625 [16:53<2:28:12,  1.76s/it]
+10%|█         | 580/5625 [16:55<2:29:55,  1.78s/it]
+{'loss': 0.0173, 'grad_norm': 0.07525666058063507, 'learning_rate': 9.999753491516976e-05, 'epoch': 0.31}
+10%|█         | 580/5625 [16:55<2:29:55,  1.78s/it]
+10%|█         | 581/5625 [16:57<2:32:48,  1.82s/it]
+10%|█         | 582/5625 [16:59<2:30:09,  1.79s/it]
+10%|█         | 583/5625 [17:01<2:33:51,  1.83s/it]
+10%|█         | 584/5625 [17:03<2:31:23,  1.80s/it]
+10%|█         | 585/5625 [17:04<2:27:46,  1.76s/it]
+10%|█         | 586/5625 [17:06<2:30:12,  1.79s/it]
+10%|█         | 587/5625 [17:08<2:35:06,  1.85s/it]
+10%|█         | 588/5625 [17:10<2:31:54,  1.81s/it]
+10%|█         | 589/5625 [17:11<2:24:01,  1.72s/it]
+10%|█         | 590/5625 [17:13<2:23:33,  1.71s/it]
+{'loss': 0.0157, 'grad_norm': 0.12498515844345093, 'learning_rate': 9.999349072312284e-05, 'epoch': 0.31}
+10%|█         | 590/5625 [17:13<2:23:33,  1.71s/it]
+11%|█         | 591/5625 [17:15<2:21:34,  1.69s/it]
+11%|█         | 592/5625 [17:16<2:17:48,  1.64s/it]
+11%|█         | 593/5625 [17:18<2:21:03,  1.68s/it]
+11%|█         | 594/5625 [17:20<2:21:18,  1.69s/it]
+11%|█         | 595/5625 [17:21<2:21:39,  1.69s/it]
+11%|█         | 596/5625 [17:23<2:18:40,  1.65s/it]
+11%|█         | 597/5625 [17:25<2:20:07,  1.67s/it]
+11%|█         | 598/5625 [17:27<2:26:05,  1.74s/it]
+11%|█         | 599/5625 [17:28<2:20:58,  1.68s/it]
+11%|█         | 600/5625 [17:30<2:20:15,  1.67s/it]
+{'loss': 0.0198, 'grad_norm': 0.07998791337013245, 'learning_rate': 9.998752092462782e-05, 'epoch': 0.32}
+11%|█         | 600/5625 [17:30<2:20:15,  1.67s/it]
+11%|█         | 601/5625 [17:31<2:17:59,  1.65s/it]
+11%|█         | 602/5625 [17:33<2:19:49,  1.67s/it]
+11%|█         | 603/5625 [17:35<2:22:45,  1.71s/it]
+11%|█         | 604/5625 [17:36<2:19:00,  1.66s/it]
+11%|█         | 605/5625 [17:38<2:14:54,  1.61s/it]
+11%|█         | 606/5625 [17:40<2:15:09,  1.62s/it]
+11%|█         | 607/5625 [17:41<2:15:46,  1.62s/it]
+11%|█         | 608/5625 [17:43<2:15:53,  1.63s/it]
+11%|█         | 609/5625 [17:44<2:14:51,  1.61s/it]
+11%|█         | 610/5625 [17:46<2:13:04,  1.59s/it]
+{'loss': 0.0144, 'grad_norm': 0.1098402813076973, 'learning_rate': 9.997962574962428e-05, 'epoch': 0.33}
+11%|█         | 610/5625 [17:46<2:13:04,  1.59s/it]
+11%|█         | 611/5625 [17:48<2:16:43,  1.64s/it]
+11%|█         | 612/5625 [17:49<2:18:00,  1.65s/it]
+11%|█         | 613/5625 [17:51<2:19:51,  1.67s/it]
+11%|█         | 614/5625 [17:53<2:23:57,  1.72s/it]
+11%|█         | 615/5625 [17:55<2:21:00,  1.69s/it]
+11%|█         | 616/5625 [17:56<2:19:59,  1.68s/it]
+11%|█         | 617/5625 [17:58<2:25:44,  1.75s/it]
+11%|█         | 618/5625 [18:00<2:34:25,  1.85s/it]
+11%|█         | 619/5625 [18:02<2:30:03,  1.80s/it]
+11%|█         | 620/5625 [18:04<2:31:44,  1.82s/it]
+{'loss': 0.0169, 'grad_norm': 0.12123053520917892, 'learning_rate': 9.99698055022118e-05, 'epoch': 0.33}
+11%|█         | 620/5625 [18:04<2:31:44,  1.82s/it]
+11%|█         | 621/5625 [18:06<2:36:07,  1.87s/it]
+11%|█         | 622/5625 [18:07<2:29:13,  1.79s/it]
+11%|█         | 623/5625 [18:09<2:28:33,  1.78s/it]
+11%|█         | 624/5625 [18:11<2:31:36,  1.82s/it]
+11%|█         | 625/5625 [18:13<2:26:11,  1.75s/it]
+11%|█         | 626/5625 [18:14<2:26:22,  1.76s/it]
+11%|█         | 627/5625 [18:16<2:23:04,  1.72s/it]
+11%|█         | 628/5625 [18:18<2:19:14,  1.67s/it]
+11%|█         | 629/5625 [18:20<2:27:09,  1.77s/it]
+11%|█         | 630/5625 [18:21<2:26:51,  1.76s/it]
+{'loss': 0.0184, 'grad_norm': 0.10369142889976501, 'learning_rate': 9.995806056063827e-05, 'epoch': 0.34}
+11%|█         | 630/5625 [18:21<2:26:51,  1.76s/it]
+11%|█         | 631/5625 [18:23<2:23:54,  1.73s/it]
+11%|█         | 632/5625 [18:25<2:29:31,  1.80s/it]
+11%|█▏        | 633/5625 [18:27<2:29:12,  1.79s/it]
+11%|█▏        | 634/5625 [18:29<2:33:38,  1.85s/it]
+11%|█▏        | 635/5625 [18:31<2:37:48,  1.90s/it]
+11%|█▏        | 636/5625 [18:32<2:34:21,  1.86s/it]
+11%|█▏        | 637/5625 [18:34<2:26:33,  1.76s/it]
+11%|█▏        | 638/5625 [18:36<2:21:59,  1.71s/it]
+11%|█▏        | 639/5625 [18:37<2:18:39,  1.67s/it]
+11%|█▏        | 640/5625 [18:39<2:19:53,  1.68s/it]
+{'loss': 0.0162, 'grad_norm': 0.11900778114795685, 'learning_rate': 9.994439137728528e-05, 'epoch': 0.34}
+11%|█▏        | 640/5625 [18:39<2:19:53,  1.68s/it]
+11%|█▏        | 641/5625 [18:40<2:16:16,  1.64s/it]
+11%|█▏        | 642/5625 [18:42<2:17:26,  1.65s/it]
+11%|█▏        | 643/5625 [18:44<2:18:42,  1.67s/it]
+11%|█▏        | 644/5625 [18:45<2:18:57,  1.67s/it]
+11%|█▏        | 645/5625 [18:47<2:20:22,  1.69s/it]
+11%|█▏        | 646/5625 [18:49<2:20:42,  1.70s/it]
+12%|█▏        | 647/5625 [18:50<2:16:52,  1.65s/it]
+12%|█▏        | 648/5625 [18:52<2:21:52,  1.71s/it]
+12%|█▏        | 649/5625 [18:54<2:29:22,  1.80s/it]
+12%|█▏        | 650/5625 [18:56<2:23:43,  1.73s/it]
+{'loss': 0.0185, 'grad_norm': 0.09629995375871658, 'learning_rate': 9.992879847865073e-05, 'epoch': 0.35}
+12%|█▏        | 650/5625 [18:56<2:23:43,  1.73s/it]
+12%|█▏        | 651/5625 [18:58<2:25:34,  1.76s/it]
+12%|█▏        | 652/5625 [18:59<2:23:52,  1.74s/it]
+12%|█▏        | 653/5625 [19:01<2:23:02,  1.73s/it]
+12%|█▏        | 654/5625 [19:03<2:17:22,  1.66s/it]
+12%|█▏        | 655/5625 [19:04<2:17:45,  1.66s/it]
+12%|█▏        | 656/5625 [19:06<2:19:24,  1.68s/it]
+12%|█▏        | 657/5625 [19:08<2:19:35,  1.69s/it]
+12%|█▏        | 658/5625 [19:09<2:19:06,  1.68s/it]
+12%|█▏        | 659/5625 [19:11<2:19:30,  1.69s/it]
+12%|█▏        | 660/5625 [19:13<2:20:37,  1.70s/it]
+{'loss': 0.0141, 'grad_norm': 0.06582915782928467, 'learning_rate': 9.991128246532854e-05, 'epoch': 0.35}
+12%|█▏        | 660/5625 [19:13<2:20:37,  1.70s/it]
+12%|█▏        | 661/5625 [19:15<2:23:24,  1.73s/it]
+12%|█▏        | 662/5625 [19:16<2:20:38,  1.70s/it]
+12%|█▏        | 663/5625 [19:18<2:30:27,  1.82s/it]
+12%|█▏        | 664/5625 [19:20<2:30:28,  1.82s/it]
+12%|█▏        | 665/5625 [19:22<2:26:35,  1.77s/it]
+12%|█▏        | 666/5625 [19:23<2:22:53,  1.73s/it]
+12%|█▏        | 667/5625 [19:26<2:35:05,  1.88s/it]
+12%|█▏        | 668/5625 [19:27<2:28:00,  1.79s/it]
+12%|█▏        | 669/5625 [19:29<2:29:47,  1.81s/it]
+12%|█▏        | 670/5625 [19:31<2:24:26,  1.75s/it]
+{'loss': 0.0208, 'grad_norm': 0.1429126113653183, 'learning_rate': 9.989184401198547e-05, 'epoch': 0.36}
+12%|█▏        | 670/5625 [19:31<2:24:26,  1.75s/it]
+12%|█▏        | 671/5625 [19:32<2:18:56,  1.68s/it]
+12%|█▏        | 672/5625 [19:34<2:24:17,  1.75s/it]
+12%|█▏        | 673/5625 [19:36<2:26:40,  1.78s/it]
+12%|█▏        | 674/5625 [19:37<2:19:55,  1.70s/it]
+12%|█▏        | 675/5625 [19:39<2:19:50,  1.70s/it]
+12%|█▏        | 676/5625 [19:41<2:15:00,  1.64s/it]
+12%|█▏        | 677/5625 [19:42<2:16:37,  1.66s/it]
+12%|█▏        | 678/5625 [19:44<2:15:52,  1.65s/it]
+12%|█▏        | 679/5625 [19:46<2:15:35,  1.64s/it]
+12%|█▏        | 680/5625 [19:47<2:17:03,  1.66s/it]
+{'loss': 0.0169, 'grad_norm': 0.141961932182312, 'learning_rate': 9.987048386733527e-05, 'epoch': 0.36}
+12%|█▏        | 680/5625 [19:47<2:17:03,  1.66s/it]
+12%|█▏        | 681/5625 [19:49<2:15:47,  1.65s/it]
+12%|█▏        | 682/5625 [19:51<2:21:43,  1.72s/it]
+12%|█▏        | 683/5625 [19:53<2:21:36,  1.72s/it]
+12%|█▏        | 684/5625 [19:54<2:26:22,  1.78s/it]
+12%|█▏        | 685/5625 [19:56<2:23:45,  1.75s/it]
+12%|█▏        | 686/5625 [19:58<2:20:06,  1.70s/it]
+12%|█▏        | 687/5625 [19:59<2:16:44,  1.66s/it]
+12%|█▏        | 688/5625 [20:01<2:14:29,  1.63s/it]
+12%|█▏        | 689/5625 [20:03<2:19:00,  1.69s/it]
+12%|█▏        | 690/5625 [20:04<2:17:08,  1.67s/it]
+{'loss': 0.0185, 'grad_norm': 0.07005877792835236, 'learning_rate': 9.984720285410964e-05, 'epoch': 0.37}
+12%|█▏        | 690/5625 [20:04<2:17:08,  1.67s/it]
+12%|█▏        | 691/5625 [20:06<2:19:36,  1.70s/it]
+12%|█▏        | 692/5625 [20:08<2:19:45,  1.70s/it]
+12%|█▏        | 693/5625 [20:09<2:16:34,  1.66s/it]
+12%|█▏        | 694/5625 [20:11<2:24:35,  1.76s/it]
+12%|█▏        | 695/5625 [20:13<2:22:01,  1.73s/it]
+12%|█▏        | 696/5625 [20:15<2:16:35,  1.66s/it]
+12%|█▏        | 697/5625 [20:16<2:17:34,  1.68s/it]
+12%|█▏        | 698/5625 [20:18<2:23:35,  1.75s/it]
+12%|█▏        | 699/5625 [20:20<2:27:48,  1.80s/it]
+12%|█▏        | 700/5625 [20:22<2:22:57,  1.74s/it]
+{'loss': 0.0175, 'grad_norm': 0.09795203059911728, 'learning_rate': 9.982200186902675e-05, 'epoch': 0.37}
+12%|█▏        | 700/5625 [20:22<2:22:57,  1.74s/it]
+12%|█▏        | 701/5625 [20:24<2:26:08,  1.78s/it]
+12%|█▏        | 702/5625 [20:25<2:27:15,  1.79s/it]
+12%|█▏        | 703/5625 [20:27<2:25:09,  1.77s/it]
+13%|█▎        | 704/5625 [20:29<2:26:15,  1.78s/it]
+13%|█▎        | 705/5625 [20:31<2:33:00,  1.87s/it]
+13%|█▎        | 706/5625 [20:32<2:24:01,  1.76s/it]
+13%|█▎        | 707/5625 [20:34<2:21:51,  1.73s/it]
+13%|█▎        | 708/5625 [20:36<2:22:15,  1.74s/it]
+13%|█▎        | 709/5625 [20:37<2:16:11,  1.66s/it]
+13%|█▎        | 710/5625 [20:39<2:15:47,  1.66s/it]
+{'loss': 0.0177, 'grad_norm': 0.11144573241472244, 'learning_rate': 9.979488188275652e-05, 'epoch': 0.38}
+13%|█▎        | 710/5625 [20:39<2:15:47,  1.66s/it]
+13%|█▎        | 711/5625 [20:41<2:17:22,  1.68s/it]
+13%|█▎        | 712/5625 [20:42<2:17:01,  1.67s/it]
+13%|█▎        | 713/5625 [20:44<2:17:39,  1.68s/it]
+13%|█▎        | 714/5625 [20:46<2:16:22,  1.67s/it]
+13%|█▎        | 715/5625 [20:48<2:22:42,  1.74s/it]
+13%|█▎        | 716/5625 [20:49<2:21:45,  1.73s/it]
+13%|█▎        | 717/5625 [20:51<2:22:21,  1.74s/it]
+13%|█▎        | 718/5625 [20:53<2:20:52,  1.72s/it]
+13%|█▎        | 719/5625 [20:54<2:18:56,  1.70s/it]
+13%|█▎        | 720/5625 [20:56<2:19:31,  1.71s/it]
+{'loss': 0.0169, 'grad_norm': 0.08282411098480225, 'learning_rate': 9.976584393988335e-05, 'epoch': 0.38}
+13%|█▎        | 720/5625 [20:56<2:19:31,  1.71s/it]
+13%|█▎        | 721/5625 [20:58<2:22:14,  1.74s/it]
+13%|█▎        | 722/5625 [21:00<2:18:56,  1.70s/it]
+13%|█▎        | 723/5625 [21:01<2:19:56,  1.71s/it]
+13%|█▎        | 724/5625 [21:03<2:23:49,  1.76s/it]
+13%|█▎        | 725/5625 [21:05<2:22:23,  1.74s/it]
+13%|█▎        | 726/5625 [21:07<2:19:00,  1.70s/it]
+13%|█▎        | 727/5625 [21:08<2:19:10,  1.70s/it]
+13%|█▎        | 728/5625 [21:10<2:22:04,  1.74s/it]
+13%|█▎        | 729/5625 [21:12<2:21:03,  1.73s/it]
+13%|█▎        | 730/5625 [21:13<2:18:03,  1.69s/it]
+{'loss': 0.0149, 'grad_norm': 0.0785142257809639, 'learning_rate': 9.973488915886586e-05, 'epoch': 0.39}
+13%|█▎        | 730/5625 [21:13<2:18:03,  1.69s/it]
+13%|█▎        | 731/5625 [21:15<2:17:08,  1.68s/it]
+13%|█▎        | 732/5625 [21:17<2:15:13,  1.66s/it]
+13%|█▎        | 733/5625 [21:18<2:16:12,  1.67s/it]
+13%|█▎        | 734/5625 [21:20<2:22:17,  1.75s/it]
+13%|█▎        | 735/5625 [21:22<2:20:21,  1.72s/it]
+13%|█▎        | 736/5625 [21:24<2:21:12,  1.73s/it]
+13%|█▎        | 737/5625 [21:25<2:21:08,  1.73s/it]
+13%|█▎        | 738/5625 [21:27<2:17:35,  1.69s/it]
+13%|█▎        | 739/5625 [21:29<2:14:07,  1.65s/it]
+13%|█▎        | 740/5625 [21:30<2:13:39,  1.64s/it]
+{'loss': 0.0153, 'grad_norm': 0.08123955130577087, 'learning_rate': 9.97020187319938e-05, 'epoch': 0.39}
+13%|█▎        | 740/5625 [21:30<2:13:39,  1.64s/it]
+13%|█▎        | 741/5625 [21:32<2:22:55,  1.76s/it]
+13%|█▎        | 742/5625 [21:34<2:21:34,  1.74s/it]
+13%|█▎        | 743/5625 [21:36<2:22:27,  1.75s/it]
+13%|█▎        | 744/5625 [21:37<2:22:25,  1.75s/it]
+13%|█▎        | 745/5625 [21:39<2:21:28,  1.74s/it]
+13%|█▎        | 746/5625 [21:41<2:18:44,  1.71s/it]
+13%|█▎        | 747/5625 [21:42<2:18:31,  1.70s/it]
+13%|█▎        | 748/5625 [21:44<2:16:39,  1.68s/it]
+13%|█▎        | 749/5625 [21:46<2:11:58,  1.62s/it]
+13%|█▎        | 750/5625 [21:47<2:12:45,  1.63s/it]
+{'loss': 0.016, 'grad_norm': 0.11919199675321579, 'learning_rate': 9.966723392534209e-05, 'epoch': 0.4}
+13%|█▎        | 750/5625 [21:47<2:12:45,  1.63s/it]
+13%|█▎        | 751/5625 [21:49<2:14:38,  1.66s/it]
+13%|█▎        | 752/5625 [21:51<2:18:19,  1.70s/it]
+13%|█▎        | 753/5625 [21:53<2:24:04,  1.77s/it]
+13%|█▎        | 754/5625 [21:54<2:23:12,  1.76s/it]
+13%|█▎        | 755/5625 [21:56<2:23:17,  1.77s/it]
+13%|█▎        | 756/5625 [21:58<2:18:09,  1.70s/it]
+13%|█▎        | 757/5625 [22:00<2:19:52,  1.72s/it]
+13%|█▎        | 758/5625 [22:01<2:18:25,  1.71s/it]
+13%|█▎        | 759/5625 [22:03<2:20:40,  1.73s/it]
+14%|█▎        | 760/5625 [22:05<2:19:43,  1.72s/it]
+{'loss': 0.0151, 'grad_norm': 0.09728603810071945, 'learning_rate': 9.963053607872211e-05, 'epoch': 0.41}
+14%|█▎        | 760/5625 [22:05<2:19:43,  1.72s/it]
+14%|█▎        | 761/5625 [22:07<2:21:42,  1.75s/it]
+14%|█▎        | 762/5625 [22:08<2:23:01,  1.76s/it]
+14%|█▎        | 763/5625 [22:10<2:19:46,  1.72s/it]
+14%|█▎        | 764/5625 [22:12<2:19:05,  1.72s/it]
+14%|█▎        | 765/5625 [22:13<2:17:43,  1.70s/it]
+14%|█▎        | 766/5625 [22:15<2:20:09,  1.73s/it]
+14%|█▎        | 767/5625 [22:17<2:22:15,  1.76s/it]
+14%|█▎        | 768/5625 [22:19<2:19:45,  1.73s/it]
+14%|█▎        | 769/5625 [22:20<2:19:20,  1.72s/it]
+14%|█▎        | 770/5625 [22:22<2:14:50,  1.67s/it]
+{'loss': 0.0163, 'grad_norm': 0.09223931282758713, 'learning_rate': 9.95919266056301e-05, 'epoch': 0.41}
+14%|█▎        | 770/5625 [22:22<2:14:50,  1.67s/it]
+14%|█▎        | 771/5625 [22:24<2:19:25,  1.72s/it]
+14%|█▎        | 772/5625 [22:26<2:23:15,  1.77s/it]
+14%|█▎        | 773/5625 [22:27<2:15:23,  1.67s/it]
+14%|█▍        | 774/5625 [22:29<2:22:39,  1.76s/it]
+14%|█▍        | 775/5625 [22:31<2:17:14,  1.70s/it]
+14%|█▍        | 776/5625 [22:32<2:16:23,  1.69s/it]
+14%|█▍        | 777/5625 [22:34<2:18:53,  1.72s/it]
+14%|█▍        | 778/5625 [22:36<2:16:04,  1.68s/it]
+14%|█▍        | 779/5625 [22:37<2:12:59,  1.65s/it]
+14%|█▍        | 780/5625 [22:39<2:15:31,  1.68s/it]
+{'loss': 0.0155, 'grad_norm': 0.13621538877487183, 'learning_rate': 9.955140699319266e-05, 'epoch': 0.42}
+14%|█▍        | 780/5625 [22:39<2:15:31,  1.68s/it]
+14%|█▍        | 781/5625 [22:41<2:20:23,  1.74s/it]
+14%|█▍        | 782/5625 [22:42<2:19:13,  1.72s/it]
+14%|█▍        | 783/5625 [22:44<2:21:18,  1.75s/it]
+14%|█▍        | 784/5625 [22:46<2:23:14,  1.78s/it]
+14%|█▍        | 785/5625 [22:48<2:18:33,  1.72s/it]
+14%|█▍        | 786/5625 [22:49<2:17:22,  1.70s/it]
+14%|█▍        | 787/5625 [22:51<2:18:34,  1.72s/it]
+14%|█▍        | 788/5625 [22:53<2:15:40,  1.68s/it]
+14%|█▍        | 789/5625 [22:54<2:17:09,  1.70s/it]
+14%|█▍        | 790/5625 [22:56<2:19:18,  1.73s/it]
+{'loss': 0.0098, 'grad_norm': 0.05505998060107231, 'learning_rate': 9.95089788021095e-05, 'epoch': 0.42}
+14%|█▍        | 790/5625 [22:56<2:19:18,  1.73s/it]
+14%|█▍        | 791/5625 [22:58<2:25:21,  1.80s/it]
+14%|█▍        | 792/5625 [23:00<2:26:49,  1.82s/it]
+14%|█▍        | 793/5625 [23:02<2:28:19,  1.84s/it]
+14%|█▍        | 794/5625 [23:04<2:22:56,  1.78s/it]
+14%|█▍        | 795/5625 [23:05<2:24:59,  1.80s/it]
+14%|█▍        | 796/5625 [23:07<2:21:57,  1.76s/it]
+14%|█▍        | 797/5625 [23:09<2:20:13,  1.74s/it]
+14%|█▍        | 798/5625 [23:10<2:14:27,  1.67s/it]
+14%|█▍        | 799/5625 [23:12<2:16:54,  1.70s/it]
+14%|█▍        | 800/5625 [23:14<2:19:16,  1.73s/it]
+{'loss': 0.0142, 'grad_norm': 0.0661545842885971, 'learning_rate': 9.946464366659335e-05, 'epoch': 0.43}
+14%|█▍        | 800/5625 [23:14<2:19:16,  1.73s/it]
+14%|█▍        | 801/5625 [23:16<2:17:24,  1.71s/it]
+14%|█▍        | 802/5625 [23:17<2:15:49,  1.69s/it]
+14%|█▍        | 803/5625 [23:19<2:23:57,  1.79s/it]
+14%|█▍        | 804/5625 [23:21<2:21:35,  1.76s/it]
+14%|█▍        | 805/5625 [23:23<2:19:13,  1.73s/it]
+14%|█▍        | 806/5625 [23:24<2:22:11,  1.77s/it]
+14%|█▍        | 807/5625 [23:26<2:24:21,  1.80s/it]
+14%|█▍        | 808/5625 [23:28<2:23:46,  1.79s/it]
+14%|█▍        | 809/5625 [23:30<2:22:26,  1.77s/it]
+14%|█▍        | 810/5625 [23:32<2:25:47,  1.82s/it]
+{'loss': 0.0119, 'grad_norm': 0.06793631613254547, 'learning_rate': 9.941840329430698e-05, 'epoch': 0.43}
+14%|█▍        | 810/5625 [23:32<2:25:47,  1.82s/it]
+14%|█▍        | 811/5625 [23:34<2:25:28,  1.81s/it]
+14%|█▍        | 812/5625 [23:35<2:26:23,  1.82s/it]
+14%|█▍        | 813/5625 [23:37<2:23:25,  1.79s/it]
+14%|█▍        | 814/5625 [23:39<2:19:16,  1.74s/it]
+14%|█▍        | 815/5625 [23:41<2:21:07,  1.76s/it]
+15%|█▍        | 816/5625 [23:42<2:18:09,  1.72s/it]
+15%|█▍        | 817/5625 [23:44<2:11:08,  1.64s/it]
+15%|█▍        | 818/5625 [23:45<2:12:54,  1.66s/it]
+15%|█▍        | 819/5625 [23:47<2:12:48,  1.66s/it]
+15%|█▍        | 820/5625 [23:49<2:10:12,  1.63s/it]
+{'loss': 0.0131, 'grad_norm': 0.15212775766849518, 'learning_rate': 9.937025946629744e-05, 'epoch': 0.44}
+15%|█▍        | 820/5625 [23:49<2:10:12,  1.63s/it]
+15%|█▍        | 821/5625 [23:50<2:12:10,  1.65s/it]
+15%|█▍        | 822/5625 [23:52<2:12:40,  1.66s/it]
+15%|█▍        | 823/5625 [23:54<2:24:56,  1.81s/it]
+15%|█▍        | 824/5625 [23:56<2:21:47,  1.77s/it]
+15%|█▍        | 825/5625 [23:57<2:18:40,  1.73s/it]
+15%|█▍        | 826/5625 [23:59<2:19:44,  1.75s/it]
+15%|█▍        | 827/5625 [24:01<2:22:49,  1.79s/it]
+15%|█▍        | 828/5625 [24:03<2:19:08,  1.74s/it]
+15%|█▍        | 829/5625 [24:05<2:33:11,  1.92s/it]
+15%|█▍        | 830/5625 [24:07<2:27:20,  1.84s/it]
+{'loss': 0.0199, 'grad_norm': 0.10265584290027618, 'learning_rate': 9.932021403692745e-05, 'epoch': 0.44}
+15%|█▍        | 830/5625 [24:07<2:27:20,  1.84s/it]
+15%|█▍        | 831/5625 [24:08<2:23:57,  1.80s/it]
+15%|█▍        | 832/5625 [24:10<2:21:30,  1.77s/it]
+15%|█▍        | 833/5625 [24:12<2:17:15,  1.72s/it]
+15%|█▍        | 834/5625 [24:14<2:22:29,  1.78s/it]
+15%|█▍        | 835/5625 [24:15<2:20:16,  1.76s/it]
+15%|█▍        | 836/5625 [24:17<2:21:41,  1.78s/it]
+15%|█▍        | 837/5625 [24:19<2:18:15,  1.73s/it]
+15%|█▍        | 838/5625 [24:20<2:16:44,  1.71s/it]
+15%|█▍        | 839/5625 [24:22<2:18:34,  1.74s/it]
+15%|█▍        | 840/5625 [24:24<2:18:32,  1.74s/it]
+{'loss': 0.0158, 'grad_norm': 0.0659501701593399, 'learning_rate': 9.926826893380398e-05, 'epoch': 0.45}
+15%|█▍        | 840/5625 [24:24<2:18:32,  1.74s/it]
+15%|█▍        | 841/5625 [24:26<2:17:37,  1.73s/it]
+15%|█▍        | 842/5625 [24:27<2:16:23,  1.71s/it]
+15%|█▍        | 843/5625 [24:29<2:16:44,  1.72s/it]
+15%|█▌        | 844/5625 [24:31<2:22:51,  1.79s/it]
+15%|█▌        | 845/5625 [24:33<2:20:12,  1.76s/it]
+15%|█▌        | 846/5625 [24:34<2:19:26,  1.75s/it]
+15%|█▌        | 847/5625 [24:36<2:23:13,  1.80s/it]
+15%|█▌        | 848/5625 [24:38<2:19:24,  1.75s/it]
+15%|█▌        | 849/5625 [24:40<2:14:28,  1.69s/it]
+15%|█▌        | 850/5625 [24:41<2:15:55,  1.71s/it]
+{'loss': 0.0116, 'grad_norm': 0.07190577685832977, 'learning_rate': 9.921442615770402e-05, 'epoch': 0.45}
+15%|█▌        | 850/5625 [24:41<2:15:55,  1.71s/it]
+15%|█▌        | 851/5625 [24:43<2:16:36,  1.72s/it]
+15%|█▌        | 852/5625 [24:45<2:19:15,  1.75s/it]
+15%|█▌        | 853/5625 [24:47<2:16:07,  1.71s/it]
+15%|█▌        | 854/5625 [24:48<2:14:12,  1.69s/it]
+15%|█▌        | 855/5625 [24:50<2:18:16,  1.74s/it]
+15%|█▌        | 856/5625 [24:52<2:19:19,  1.75s/it]
+15%|█▌        | 857/5625 [24:54<2:18:52,  1.75s/it]
+15%|█▌        | 858/5625 [24:55<2:16:56,  1.72s/it]
+15%|█▌        | 859/5625 [24:57<2:16:49,  1.72s/it]
+15%|█▌        | 860/5625 [24:59<2:14:43,  1.70s/it]
+{'loss': 0.0128, 'grad_norm': 0.07342436164617538, 'learning_rate': 9.915868778249749e-05, 'epoch': 0.46}
+15%|█▌        | 860/5625 [24:59<2:14:43,  1.70s/it]
+15%|█▌        | 861/5625 [25:00<2:18:36,  1.75s/it]
+15%|█▌        | 862/5625 [25:02<2:15:10,  1.70s/it]
+15%|█▌        | 863/5625 [25:04<2:18:57,  1.75s/it]
+15%|█▌        | 864/5625 [25:06<2:19:17,  1.76s/it]
+15%|█▌        | 865/5625 [25:07<2:17:03,  1.73s/it]
+15%|█▌        | 866/5625 [25:09<2:19:20,  1.76s/it]
+15%|█▌        | 867/5625 [25:11<2:16:41,  1.72s/it]
+15%|█▌        | 868/5625 [25:12<2:11:20,  1.66s/it]
+15%|█▌        | 869/5625 [25:14<2:12:28,  1.67s/it]
+15%|█▌        | 870/5625 [25:15<2:08:56,  1.63s/it]
+{'loss': 0.0168, 'grad_norm': 0.10481281578540802, 'learning_rate': 9.910105595506737e-05, 'epoch': 0.46}
+15%|█▌        | 870/5625 [25:15<2:08:56,  1.63s/it]
+15%|█▌        | 871/5625 [25:17<2:13:05,  1.68s/it]
+16%|█▌        | 872/5625 [25:19<2:12:00,  1.67s/it]
+16%|█▌        | 873/5625 [25:21<2:10:16,  1.64s/it]
+16%|█▌        | 874/5625 [25:22<2:12:54,  1.68s/it]
+16%|█▌        | 875/5625 [25:24<2:12:55,  1.68s/it]
+16%|█▌        | 876/5625 [25:26<2:14:32,  1.70s/it]
+16%|█▌        | 877/5625 [25:27<2:15:44,  1.72s/it]
+16%|█▌        | 878/5625 [25:29<2:16:09,  1.72s/it]
+16%|█▌        | 879/5625 [25:31<2:14:52,  1.71s/it]
+16%|█▌        | 880/5625 [25:32<2:09:57,  1.64s/it]
+{'loss': 0.0147, 'grad_norm': 0.0827665627002716, 'learning_rate': 9.904153289522703e-05, 'epoch': 0.47}
+16%|█▌        | 880/5625 [25:32<2:09:57,  1.64s/it]
+16%|█▌        | 881/5625 [25:34<2:13:41,  1.69s/it]
+16%|█▌        | 882/5625 [25:36<2:12:56,  1.68s/it]
+16%|█▌        | 883/5625 [25:38<2:14:43,  1.70s/it]
+16%|█▌        | 884/5625 [25:39<2:11:12,  1.66s/it]
+16%|█▌        | 885/5625 [25:41<2:10:27,  1.65s/it]
+16%|█▌        | 886/5625 [25:43<2:21:47,  1.80s/it]
+16%|█▌        | 887/5625 [25:44<2:15:54,  1.72s/it]
+16%|█▌        | 888/5625 [25:46<2:16:27,  1.73s/it]
+16%|█▌        | 889/5625 [25:48<2:17:50,  1.75s/it]
+16%|█▌        | 890/5625 [25:50<2:19:29,  1.77s/it]
+{'loss': 0.0148, 'grad_norm': 0.0939960703253746, 'learning_rate': 9.89801208956347e-05, 'epoch': 0.47}
+16%|█▌        | 890/5625 [25:50<2:19:29,  1.77s/it]
+16%|█▌        | 891/5625 [25:52<2:20:43,  1.78s/it]
+16%|█▌        | 892/5625 [25:53<2:16:19,  1.73s/it]
+16%|█▌        | 893/5625 [25:55<2:18:07,  1.75s/it]
+16%|█▌        | 894/5625 [25:57<2:15:38,  1.72s/it]
+16%|█▌        | 895/5625 [25:58<2:12:31,  1.68s/it]
+16%|█▌        | 896/5625 [26:00<2:15:08,  1.71s/it]
+16%|█▌        | 897/5625 [26:02<2:12:18,  1.68s/it]
+16%|█▌        | 898/5625 [26:04<2:19:27,  1.77s/it]
+16%|█▌        | 899/5625 [26:06<2:23:07,  1.82s/it]
+16%|█▌        | 900/5625 [26:07<2:16:13,  1.73s/it]
+{'loss': 0.0132, 'grad_norm': 0.061308763921260834, 'learning_rate': 9.891682232170515e-05, 'epoch': 0.48}
+16%|█▌        | 900/5625 [26:07<2:16:13,  1.73s/it]
+16%|█▌        | 901/5625 [26:09<2:14:47,  1.71s/it]
+16%|█▌        | 902/5625 [26:10<2:15:07,  1.72s/it]
+16%|█▌        | 903/5625 [26:12<2:17:52,  1.75s/it]
+16%|█▌        | 904/5625 [26:14<2:16:56,  1.74s/it]
+16%|█▌        | 905/5625 [26:16<2:20:40,  1.79s/it]
+16%|█▌        | 906/5625 [26:18<2:16:26,  1.73s/it]
+16%|█▌        | 907/5625 [26:19<2:15:38,  1.72s/it]
+16%|█▌        | 908/5625 [26:21<2:18:08,  1.76s/it]
+16%|█▌        | 909/5625 [26:23<2:13:28,  1.70s/it]
+16%|█▌        | 910/5625 [26:24<2:11:01,  1.67s/it]
+{'loss': 0.015, 'grad_norm': 0.10134471207857132, 'learning_rate': 9.885163961151866e-05, 'epoch': 0.49}
+16%|█▌        | 910/5625 [26:24<2:11:01,  1.67s/it]
+16%|█▌        | 911/5625 [26:26<2:11:00,  1.67s/it]
+16%|█▌        | 912/5625 [26:28<2:13:24,  1.70s/it]
+16%|█▌        | 913/5625 [26:29<2:13:27,  1.70s/it]
+16%|█▌        | 914/5625 [26:31<2:17:23,  1.75s/it]
+16%|█▋        | 915/5625 [26:33<2:11:28,  1.67s/it]
+16%|█▋        | 916/5625 [26:35<2:18:46,  1.77s/it]
+16%|█▋        | 917/5625 [26:37<2:21:07,  1.80s/it]
+16%|█▋        | 918/5625 [26:38<2:22:20,  1.81s/it]
+16%|█▋        | 919/5625 [26:40<2:18:05,  1.76s/it]
+16%|█▋        | 920/5625 [26:42<2:14:50,  1.72s/it]
+{'loss': 0.0173, 'grad_norm': 0.05943714454770088, 'learning_rate': 9.878457527572699e-05, 'epoch': 0.49}
+16%|█▋        | 920/5625 [26:42<2:14:50,  1.72s/it]
+16%|█▋        | 921/5625 [26:43<2:09:46,  1.66s/it]
+16%|█▋        | 922/5625 [26:45<2:17:22,  1.75s/it]
+16%|█▋        | 923/5625 [26:47<2:23:26,  1.83s/it]
+16%|█▋        | 924/5625 [26:49<2:19:15,  1.78s/it]
+16%|█▋        | 925/5625 [26:50<2:15:45,  1.73s/it]
+16%|█▋        | 926/5625 [26:52<2:14:09,  1.71s/it]
+16%|█▋        | 927/5625 [26:54<2:11:56,  1.69s/it]
+16%|█▋        | 928/5625 [26:56<2:14:15,  1.72s/it]
+17%|█▋        | 929/5625 [26:57<2:15:04,  1.73s/it]
+17%|█▋        | 930/5625 [26:59<2:08:22,  1.64s/it]
+{'loss': 0.0155, 'grad_norm': 0.06991428136825562, 'learning_rate': 9.871563189745681e-05, 'epoch': 0.5}
+17%|█▋        | 930/5625 [26:59<2:08:22,  1.64s/it]
+17%|█▋        | 931/5625 [27:01<2:16:47,  1.75s/it]
+17%|█▋        | 932/5625 [27:03<2:17:03,  1.75s/it]
+17%|█▋        | 933/5625 [27:04<2:15:35,  1.73s/it]
+17%|█▋        | 934/5625 [27:06<2:13:47,  1.71s/it]
+17%|█▋        | 935/5625 [27:07<2:11:23,  1.68s/it]
+17%|█▋        | 936/5625 [27:09<2:14:06,  1.72s/it]
+17%|█▋        | 937/5625 [27:11<2:13:56,  1.71s/it]
+17%|█▋        | 938/5625 [27:13<2:16:39,  1.75s/it]
+17%|█▋        | 939/5625 [27:14<2:14:31,  1.72s/it]
+17%|█▋        | 940/5625 [27:16<2:12:33,  1.70s/it]
+{'loss': 0.0161, 'grad_norm': 0.0764031931757927, 'learning_rate': 9.864481213221006e-05, 'epoch': 0.5}
+17%|█▋        | 940/5625 [27:16<2:12:33,  1.70s/it]
+17%|█▋        | 941/5625 [27:18<2:18:15,  1.77s/it]
+17%|█▋        | 942/5625 [27:20<2:18:09,  1.77s/it]
+17%|█▋        | 943/5625 [27:21<2:14:11,  1.72s/it]
+17%|█▋        | 944/5625 [27:23<2:12:35,  1.70s/it]
+17%|█▋        | 945/5625 [27:25<2:14:12,  1.72s/it]
+17%|█▋        | 946/5625 [27:27<2:15:52,  1.74s/it]
+17%|█▋        | 947/5625 [27:28<2:15:55,  1.74s/it]
+17%|█▋        | 948/5625 [27:30<2:10:11,  1.67s/it]
+17%|█▋        | 949/5625 [27:31<2:08:24,  1.65s/it]
+17%|█▋        | 950/5625 [27:33<2:10:27,  1.67s/it]
+{'loss': 0.0149, 'grad_norm': 0.07232663780450821, 'learning_rate': 9.857211870776182e-05, 'epoch': 0.51}
+17%|█▋        | 950/5625 [27:33<2:10:27,  1.67s/it]
+17%|█▋        | 951/5625 [27:35<2:14:17,  1.72s/it]
+17%|█▋        | 952/5625 [27:37<2:14:57,  1.73s/it]
+17%|█▋        | 953/5625 [27:39<2:16:15,  1.75s/it]
+17%|█▋        | 954/5625 [27:40<2:13:54,  1.72s/it]
+17%|█▋        | 955/5625 [27:42<2:14:14,  1.72s/it]
+17%|█▋        | 956/5625 [27:44<2:16:32,  1.75s/it]
+17%|█▋        | 957/5625 [27:45<2:13:29,  1.72s/it]
+17%|█▋        | 958/5625 [27:47<2:13:33,  1.72s/it]
+17%|█▋        | 959/5625 [27:49<2:13:20,  1.71s/it]
+17%|█▋        | 960/5625 [27:51<2:16:21,  1.75s/it]
+{'loss': 0.0128, 'grad_norm': 0.05817477032542229, 'learning_rate': 9.84975544240551e-05, 'epoch': 0.51}
+17%|█▋        | 960/5625 [27:51<2:16:21,  1.75s/it]
+17%|█▋        | 961/5625 [27:53<2:18:08,  1.78s/it]
+17%|█▋        | 962/5625 [27:54<2:12:57,  1.71s/it]
+17%|█▋        | 963/5625 [27:56<2:12:47,  1.71s/it]
+17%|█▋        | 964/5625 [27:57<2:11:27,  1.69s/it]
+17%|█▋        | 965/5625 [27:59<2:14:46,  1.74s/it]
+17%|█▋        | 966/5625 [28:01<2:11:39,  1.70s/it]
+17%|█▋        | 967/5625 [28:03<2:14:33,  1.73s/it]
+17%|█▋        | 968/5625 [28:05<2:18:34,  1.79s/it]
+17%|█▋        | 969/5625 [28:06<2:16:09,  1.75s/it]
+17%|█▋        | 970/5625 [28:08<2:12:26,  1.71s/it]
+{'loss': 0.0163, 'grad_norm': 0.12615050375461578, 'learning_rate': 9.842112215309315e-05, 'epoch': 0.52}

@@ -1,0 +1,15 @@
+artifact_uri: file:///home/sagemaker-user/Proj_NPA/nlp_genAI_projectV2/scripts/fine_tuning/mlruns/0/d288976dff024747ba33feb4f8906bda/artifacts
+end_time: 1752356664714
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: d288976dff024747ba33feb4f8906bda
+run_name: /home/sagemaker-user/Proj_NPA/nlp_genAI_projectV2/models/sentiment_model
+run_uuid: d288976dff024747ba33feb4f8906bda
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1752356655694
+status: 3
+tags: []
+user_id: sagemaker-user
